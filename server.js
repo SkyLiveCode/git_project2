@@ -12,12 +12,12 @@ const fs = require('fs');                         // นำเข้าโมด
 const cookieParser = require('cookie-parser'); // นำเข้าโมดูล cookie-parser สำหรับจัดการคุกกี้
 const session = require('express-session'); // นำเข้าโมดูล express-session สำหรับจัดการ session
 const { checkAuthenticated } = require('./middleware/authMiddleware'); // นำเข้าโมดูล middleware
-const calculateController = require('./controllers/calculateController'); // นำเข้าโมดูล calculateController
+const calculateController1 = require('./controllers/calculateController1'); // นำเข้าโมดูล calculateController1
+const calculateController2 = require('./controllers/calculateController2'); // นำเข้าโมดูล calculateController2
 const authRoute = require('./routes/authRoute');            // นำเข้า authRoute สำหรับการจัดการเส้นทางการรับรองความถูกต้อง
 const calculateRoute = require('./routes/calculateRoute');  // นำเข้า calculateRoute สำหรับการจัดการเส้นทางการคำนวณ
 const hospitalRoutes = require('./routes/hospitalRoutes'); // นำเข้าโมดูล hospitalRoutes
 const medicalEquipmentRoutes = require('./routes/medicalEquipmentRoutes'); // นำเข้าโมดูล medicalEquipmentRoutes
-const calRoute = require('./routes/calRoute');  // นำเข้า calculateRoute สำหรับการจัดการเส้นทางการคำนวณ
 
 const app = express();                 // สร้างแอปพลิเคชัน Express
 const server = http.createServer(app); // สร้างเซิร์ฟเวอร์ HTTP
@@ -48,7 +48,6 @@ app.use(session({
 
 // กำหนด Route
 app.use('/', authRoute);
-app.use('/', calRoute);
 app.use('/', calculateRoute);
 app.use('/', hospitalRoutes);
 app.use('/', medicalEquipmentRoutes);
@@ -59,7 +58,8 @@ app.get('/', checkAuthenticated, (req, res) => {
 });
 
 // กำหนดการเชื่อมต่อ Socket.IO
-calculateController.handleSocketConnection(io);
+calculateController1.handleSocketConnection(io);
+calculateController2.handleSocketConnection(io);
 
 // กำหนดพอร์ตที่เซิร์ฟเวอร์จะฟัง
 const PORT = process.env.PORT || 3000;

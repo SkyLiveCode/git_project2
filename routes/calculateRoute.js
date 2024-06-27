@@ -1,23 +1,31 @@
-// นำเข้าโมดูล express
+// calculateRoute.js
+
 const express = require('express');
-// สร้าง router object จาก express
 const router = express.Router();
-// นำเข้า controller สำหรับการจัดการหน้าคำนวณ
-const calculateController = require('../controllers/calculateController');
-// นำเข้าโมดูล middleware
-const { checkAuthenticated } = require('../middleware/authMiddleware'); 
+const calculateController1 = require('../controllers/calculateController1');
+const calculateController2 = require('../controllers/calculateController2');
+const { checkAuthenticated } = require('../middleware/authMiddleware');
 
-// กำหนดเส้นทาง GET สำหรับการแสดงหน้าคำนวณ และเรียกใช้ฟังก์ชัน showCalculatePage จาก calculateController
-router.get('/calculate', checkAuthenticated, calculateController.showCalculatePage);
+// Calculate 1
+router.get('/html/pages-calculates/pages-calculate1/:equipment_id/:id_hospital/:id_categories', (req, res) => {
+    req.session.equipment_id = req.params.equipment_id;
+    req.session.id_hospital = req.params.id_hospital;
+    req.session.id_categories = req.params.id_categories;
+    res.redirect('/html/pages-calculates/pages-calculate1'); // เปลี่ยนเส้นทางไปยังหน้า Calculate 1
+});
+router.get('/html/pages-calculates/pages-calculate1', calculateController1.showCalculatePage);
+router.get('/get-inputs1', calculateController1.getInputs);
+router.post('/update-inputs1', calculateController1.updateInputs);
 
-// เส้นทาง POST สำหรับการคำนวณ
-router.post('/calculate', checkAuthenticated, calculateController.calculate);
+// Calculate 2
+router.get('/html/pages-calculates/pages-calculate2/:equipment_id/:id_hospital/:id_categories', (req, res) => {
+    req.session.equipment_id = req.params.equipment_id;
+    req.session.id_hospital = req.params.id_hospital;
+    req.session.id_categories = req.params.id_categories;
+    res.redirect('/html/pages-calculates/pages-calculate2'); // เปลี่ยนเส้นทางไปยังหน้า Calculate 2
+});
+router.get('/html/pages-calculates/pages-calculate2', calculateController2.showCalculatePage);
+router.get('/get-inputs2', calculateController2.getInputs);
+router.post('/update-inputs2', calculateController2.updateInputs);
 
-// เส้นทางสำหรับดึงข้อมูล inputs จากฐานข้อมูล
-router.get('/get-inputs', calculateController.getInputs);
-
-// เส้นทางสำหรับอัปเดตข้อมูล inputs ในฐานข้อมูล
-router.post('/update-inputs', calculateController.updateInputs);
-
-// ส่งออกโมดูล router เพื่อให้สามารถใช้งานในไฟล์อื่นได้
 module.exports = router;

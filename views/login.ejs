@@ -54,9 +54,10 @@
               <h4 class="mb-2">Welcome to Professional with Quality Service</h4>
               <p class="mb-4">Please sign-in to your account</p>
 
-              <?php if ($error_message): ?>
-              <div id="login-error" class="form-text text-danger"><?php echo $error_message; ?></div>
-              <?php endif; ?>
+              <!-- ถ้ามีข้อความแจ้งเตือน แสดงออกมา -->
+              <% if (typeof error !== 'undefined') { %>
+                <p style="color: red;"><%= error %></p>
+              <% } %>
 
               <form id="formAuthentication" class="mb-3" action="" method="POST">
                 <div class="mb-3">

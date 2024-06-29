@@ -4,9 +4,11 @@ const db = require('../config/database');
 exports.renderMedicalEquipmentInformation = async (req, res) => {
     try {
         const id_hospital = req.session.id_hospital; // ดึง id_hospital จาก session
+        const [hospital] = await db.query('SELECT * FROM hospital WHERE id = ?', [id_hospital]);
         const [medicalEquipments] = await db.query('SELECT * FROM equipment WHERE id_hospital = ?', [id_hospital]);
         const [categories] = await db.query('SELECT id, categorie_name, short_name FROM categories'); // ดึงข้อมูล categories
-        res.render('html/pages-medical_equipment', { medicalEquipments, id_hospital, categories });
+        const user = req.session.user;
+        res.render('html/pages-medical_equipment', { medicalEquipments, id_hospital, categories, hospital, user });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
@@ -42,8 +44,8 @@ exports.deleteMedicalEquipment = async (req, res) => {
 // ฟังก์ชันเพื่ออัปเดต medical equipment
 exports.updateMedicalEquipment = async (req, res) => {
     try {
-        const { id, equipment_name, id_no, id_hospital } = req.body;
-        await db.query('UPDATE equipment SET equipment_name = ?, `ID. No.` = ? WHERE id = ?', [equipment_name, id_no, id]);
+        const { id, id_no, id_hospital } = req.body;
+        await db.query('UPDATE equipment SET `ID. No.` = ? WHERE id = ?', [id_no, id]);
         res.redirect(`/html/pages-medical_equipment?id=${id_hospital}`);
     } catch (err) {
         console.error(err);

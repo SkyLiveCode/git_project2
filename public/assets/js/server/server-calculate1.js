@@ -24,9 +24,6 @@ function calculate(event) {
   .then(data => {
     document.getElementById('sumResult').innerText = data.sumResult; // แสดงผลลัพธ์การคำนวณผลรวม
     document.getElementById('differenceResult').innerText = data.differenceResult; // แสดงผลลัพธ์การคำนวณผลต่าง
-    document.getElementById('signatureStatus1').innerText = data.signatureStatus1; // แสดงสถานะลายเซ็นต์ 1
-    document.getElementById('signatureStatus2').innerText = data.signatureStatus2; // แสดงสถานะลายเซ็นต์ 2
-    document.getElementById('signatureStatus3').innerText = data.signatureStatus3; // แสดงสถานะลายเซ็นต์ 3
     // <<<<<<<<<< เพิ่มรายการ... (result)
 
     // ตั้งค่าปุ่มเลือกแบบตัวเลือก
@@ -60,9 +57,6 @@ document.getElementById('calcForm').addEventListener('input', () => {
 socket.on('calculatedResult', (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
   document.getElementById('sumResult').innerText = data.sumResult; // แสดงผลลัพธ์การคำนวณผลรวม
   document.getElementById('differenceResult').innerText = data.differenceResult; // แสดงผลลัพธ์การคำนวณผลต่าง
-  document.getElementById('signatureStatus1').innerText = data.signatureStatus1; // แสดงสถานะลายเซ็นต์ 1
-  document.getElementById('signatureStatus2').innerText = data.signatureStatus2; // แสดงสถานะลายเซ็นต์ 2
-  document.getElementById('signatureStatus3').innerText = data.signatureStatus3; // แสดงสถานะลายเซ็นต์ 3
   // <<<<<<<<<< เพิ่มรายการ... (result)
 
   // ตั้งค่าปุ่มเลือกแบบตัวเลือก

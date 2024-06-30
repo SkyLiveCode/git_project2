@@ -43,18 +43,11 @@ exports.calculate = (req, res) => {
 
     const sumResult = sum(Number(calinput1), Number(calinput2));
     const differenceResult = Number(calinput3) - Number(calinput4);
-    const signatureStatus1 = signature1 ? 'Signed' : 'Not Signed';
-    const signatureStatus2 = signature2 ? 'Signed' : 'Not Signed';
-    const signatureStatus3 = signature3 ? 'Signed' : 'Not Signed';
     // <<<<<<<<<< เพิ่มรายการ... (result)
-
 
     res.json({
         sumResult,
         differenceResult,
-        signatureStatus1,
-        signatureStatus2,
-        signatureStatus3,
         radio1,
         radio2,
         infoinput1,
@@ -100,16 +93,10 @@ exports.handleSocketConnection = (io) => {
         socket.on('calculate', (data) => {
             const sumResult = sum(Number(data.calinput1), Number(data.calinput2));
             const differenceResult = Number(data.calinput3) - Number(data.calinput4);
-            const signatureStatus1 = data.signature1 ? 'Signed' : 'Not Signed';
-            const signatureStatus2 = data.signature2 ? 'Signed' : 'Not Signed';
-            const signatureStatus3 = data.signature3 ? 'Signed' : 'Not Signed';
             // <<<<<<<<<< เพิ่มรายการ... (result)
             socket.emit('calculatedResult', { 
                 sumResult, 
-                differenceResult, 
-                signatureStatus1, 
-                signatureStatus2, 
-                signatureStatus3,
+                differenceResult,
                 radio1: data.radio1, 
                 radio2: data.radio2,
                 infoinput1: data.infoinput1,

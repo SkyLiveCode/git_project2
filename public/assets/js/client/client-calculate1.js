@@ -37,9 +37,7 @@ function sendInputs(inputs) {
   socket.on('calculatedResult', (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
     document.getElementById('sumResult').textContent = data.sumResult;
     document.getElementById('differenceResult').textContent = data.differenceResult;
-    document.getElementById('signatureStatus1').textContent = data.signatureStatus1;
-    document.getElementById('signatureStatus2').textContent = data.signatureStatus2;
-    document.getElementById('signatureStatus3').textContent = data.signatureStatus3;
+    // <<<<<<<<<< เพิ่มรายการ... (result)
 
     // แสดง/ซ่อนรูปภาพตามลายเซ็นต์ 3
     const signature3 = document.getElementById('signature3').value.toLowerCase();

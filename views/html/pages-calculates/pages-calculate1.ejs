@@ -46,6 +46,8 @@
     <input type="radio" name="radio2" value="option2" id="radio2Option2">Option 2
     <input type="radio" name="radio2" value="option3" id="radio2Option3">Option 3<br>
     
+    <!-- เพิ่มรายการ... -->
+
     <button type="submit">Submit</button> <!-- ปุ่มส่งฟอร์ม -->
   </form>
 
@@ -63,7 +65,7 @@
 
   <script src="/socket.io/socket.io.js"></script> <!-- อ้างอิงไฟล์ Socket.IO -->
   <script src="/assets/js/server/server-calculate1.js"></script> <!-- อ้างอิงไฟล์ JavaScript ฝั่งเซิร์ฟเวอร์ -->
-  <!-- อ้างอิงไฟล์ JavaScript ที่แยกออกมา -->
+  <!-- การคำนวณ input Client -->
   <script>
     // ฝังค่าของ user.name ลงในตัวแปร JavaScript
     const userName = '<%= user.name %>';

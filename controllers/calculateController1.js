@@ -1,4 +1,5 @@
 const db = require('../config/database');
+const { sum } = require('../utils/util');
 
 // ฟังก์ชันแสดงหน้าคำนวณ
 exports.showCalculatePage = (req, res) => {
@@ -11,7 +12,7 @@ exports.showCalculatePage = (req, res) => {
 exports.calculate = (req, res) => {
     const { calinput1, calinput2, calinput3, calinput4, signature1, signature2, signature3, textarea1, textarea2, radio1, radio2, infoinput1, infoinput2, infoinput3, infoinput4 } = req.body;
 
-    const sumResult = Number(calinput1) + Number(calinput2);
+    const sumResult = sum(Number(calinput1), Number(calinput2));
     const differenceResult = Number(calinput3) - Number(calinput4);
     const signatureStatus1 = signature1 ? 'Signed' : 'Not Signed';
     const signatureStatus2 = signature2 ? 'Signed' : 'Not Signed';
@@ -65,7 +66,7 @@ exports.handleSocketConnection = (io) => {
         console.log('New client connected'); // แสดงข้อความเมื่อมีการเชื่อมต่อใหม่จากไคลเอนต์
 
         socket.on('calculate', (data) => {
-            const sumResult = Number(data.calinput1) + Number(data.calinput2);
+            const sumResult = sum(Number(data.calinput1), Number(data.calinput2));
             const differenceResult = Number(data.calinput3) - Number(data.calinput4);
             const signatureStatus1 = data.signature1 ? 'Signed' : 'Not Signed';
             const signatureStatus2 = data.signature2 ? 'Signed' : 'Not Signed';

@@ -3,9 +3,14 @@ const { sum } = require('../utils/util');
 
 // ฟังก์ชันแสดงหน้าคำนวณ
 exports.showCalculatePage = (req, res) => {
-    const { equipment_id, id_hospital, id_categories } = req.session;
-    const user = req.session.user;
-    res.render('html/pages-calculates/pages-calculate1', { equipment_id, id_hospital, id_categories, user });
+    try {
+        const { equipment_id, id_hospital, id_categories } = req.session;
+        const user = req.session.user;
+        res.render('html/pages-calculates/pages-calculate1', { equipment_id, id_hospital, id_categories, user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 };
 
 // ฟังก์ชันคำนวณและส่งผลลัพธ์กลับ

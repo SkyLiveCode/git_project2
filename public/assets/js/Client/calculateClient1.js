@@ -1,34 +1,34 @@
 // ฟังก์ชันสำหรับดึงข้อมูล inputs จากเซิร์ฟเวอร์
 function fetchInputs() {
-    fetch('/get-inputs1')
-      .then(response => response.json())
-      .then(data => {
-        if (data.inputs) {
-          Object.keys(data.inputs).forEach(key => {
-            if (document.getElementById(key)) {
-              document.getElementById(key).value = data.inputs[key] || '';
-            }
-          });
-  
-          // ตั้งค่าปุ่มเลือกแบบตัวเลือกตามข้อมูลที่ได้รับ
-          if (data.inputs.radio1) {
-            document.querySelector(`input[name="radio1"][value="${data.inputs.radio1}"]`).checked = true;
+  fetch('/get-inputs1')
+    .then(response => response.json())
+    .then(data => {
+      if (data.inputs) {
+        Object.keys(data.inputs).forEach(key => {
+          if (document.getElementById(key)) {
+            document.getElementById(key).value = data.inputs[key] || '';
           }
-          if (data.inputs.radio2) {
-            document.querySelector(`input[name="radio2"][value="${data.inputs.radio2}"]`).checked = true;
-          }
-  
-          // เรียกฟังก์ชันส่งข้อมูลเพื่อแสดงผลลัพธ์เบื้องต้น
-          sendInputs(data.inputs);
+        });
+
+        // ตั้งค่าปุ่มเลือกแบบตัวเลือกตามข้อมูลที่ได้รับ
+        if (data.inputs.radio1) {
+          document.querySelector(`input[name="radio1"][value="${data.inputs.radio1}"]`).checked = true;
         }
-      });
-  }
+        if (data.inputs.radio2) {
+          document.querySelector(`input[name="radio2"][value="${data.inputs.radio2}"]`).checked = true;
+        }
+
+        // เรียกฟังก์ชันส่งข้อมูลเพื่อแสดงผลลัพธ์เบื้องต้น
+        sendInputs(data.inputs);
+      }
+    });
+}
 
 // ฟังก์ชันส่งข้อมูล inputs ไปยังเซิร์ฟเวอร์
 function sendInputs(inputs) {
-const socket = io();
-socket.emit('calculate', inputs);
-socket.on('calculatedResult', (data) => {
+  const socket = io();
+  socket.emit('calculate', inputs);
+  socket.on('calculatedResult', (data) => {
     document.getElementById('sumResult').textContent = data.sumResult;
     document.getElementById('differenceResult').textContent = data.differenceResult;
     document.getElementById('signatureStatus1').textContent = data.signatureStatus1;
@@ -39,13 +39,13 @@ socket.on('calculatedResult', (data) => {
     const signature3 = document.getElementById('signature3').value.toLowerCase();
     const signatureImage = document.getElementById('signatureImage');
     if (signature3 === 'sky') {
-    signatureImage.src = 'path_to_sky_image.jpg';
-    signatureImage.style.display = 'block';
+      signatureImage.src = 'path_to_sky_image.jpg';
+      signatureImage.style.display = 'block';
     } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
-    signatureImage.src = 'path_to_nezuko_image.jpg';
-    signatureImage.style.display = 'block';
+      signatureImage.src = 'path_to_nezuko_image.jpg';
+      signatureImage.style.display = 'block';
     } else {
-    signatureImage.style.display = 'none';
+      signatureImage.style.display = 'none';
     }
 
     // ตั้งค่าปุ่มเลือกแบบตัวเลือก
@@ -59,7 +59,7 @@ socket.on('calculatedResult', (data) => {
     document.getElementById('infoinput2').value = data.infoinput2 || '';
     document.getElementById('infoinput3').value = data.infoinput3 || '';
     document.getElementById('infoinput4').value = data.infoinput4 || '';
-});
+  });
 }
 
 // เรียกฟังก์ชัน fetchInputs เมื่อโหลดหน้าเว็บ
@@ -67,75 +67,75 @@ document.addEventListener('DOMContentLoaded', fetchInputs);
 
 // ฟังก์ชันสำหรับกรอกข้อมูลลายเซ็นต์
 document.getElementById('fillSignature1').addEventListener('click', function() {
-const signature1Input = document.getElementById('signature1');
-if (!signature1Input.value) {
+  const signature1Input = document.getElementById('signature1');
+  if (!signature1Input.value) {
     signature1Input.value = '<%= user.name %>';
     sendInputs(getInputs());
-}
+  }
 });
 
 document.getElementById('fillSignature2').addEventListener('click', function() {
-const signature2Input = document.getElementById('signature2');
-if (!signature2Input.value) {
+  const signature2Input = document.getElementById('signature2');
+  if (!signature2Input.value) {
     signature2Input.value = '<%= user.name %>';
     sendInputs(getInputs());
-}
+  }
 });
 
 document.getElementById('fillSignature3').addEventListener('click', function() {
-const signature3Input = document.getElementById('signature3');
-if (!signature3Input.value) {
+  const signature3Input = document.getElementById('signature3');
+  if (!signature3Input.value) {
     signature3Input.value = '<%= user.name %>';
     sendInputs(getInputs());
-}
+  }
 });
 
 // ฟังก์ชันสำหรับดึงข้อมูล inputs จากฟอร์ม
 function getInputs() {
-const inputs = {};
-document.querySelectorAll('#calcForm input, #calcForm textarea').forEach(input => {
+  const inputs = {};
+  document.querySelectorAll('#calcForm input, #calcForm textarea').forEach(input => {
     if (input.type === 'radio') {
-    if (input.checked) {
+      if (input.checked) {
         inputs[input.name] = input.value;
-    }
+      }
     } else {
-    inputs[input.name] = input.value;
+      inputs[input.name] = input.value;
     }
-});
-return inputs;
+  });
+  return inputs;
 }
 
 // ส่งข้อมูลเมื่อฟอร์มถูก submit
 document.getElementById('calcForm').addEventListener('submit', function(event) {
-event.preventDefault();
-const inputs = getInputs();
+  event.preventDefault();
+  const inputs = getInputs();
 
-fetch('/update-inputs1', {
+  fetch('/update-inputs1', {
     method: 'POST',
     headers: {
-    'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ inputs: inputs }),
-}).then(response => response.json())
+  }).then(response => response.json())
     .then(data => {
-    if (data.success) {
+      if (data.success) {
         alert('Inputs updated successfully');
         sendInputs(inputs);
-    }
+      }
     });
 });
 
 // ตรวจสอบลายเซ็นต์ 3 แบบเรียลไทม์
 document.getElementById('signature3').addEventListener('input', function() {
-const signature3 = document.getElementById('signature3').value.toLowerCase();
-const signatureImage = document.getElementById('signatureImage');
-if (signature3 === 'sky') {
+  const signature3 = document.getElementById('signature3').value.toLowerCase();
+  const signatureImage = document.getElementById('signatureImage');
+  if (signature3 === 'sky') {
     signatureImage.src = 'path_to_sky_image.jpg';
     signatureImage.style.display = 'block';
-} else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
+  } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
     signatureImage.src = 'path_to_nezuko_image.jpg';
     signatureImage.style.display = 'block';
-} else {
+  } else {
     signatureImage.style.display = 'none';
-}
+  }
 });

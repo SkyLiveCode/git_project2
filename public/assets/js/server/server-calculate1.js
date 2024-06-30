@@ -27,7 +27,7 @@ function calculate(event) {
     document.getElementById('signatureStatus1').innerText = data.signatureStatus1; // แสดงสถานะลายเซ็นต์ 1
     document.getElementById('signatureStatus2').innerText = data.signatureStatus2; // แสดงสถานะลายเซ็นต์ 2
     document.getElementById('signatureStatus3').innerText = data.signatureStatus3; // แสดงสถานะลายเซ็นต์ 3
-    // <<<<<<<<<< เพิ่มรายการ... 
+    // <<<<<<<<<< เพิ่มรายการ... (result)
 
     // ตั้งค่าปุ่มเลือกแบบตัวเลือก
     document.getElementById('radio1Option1').checked = data.radio1 === 'option1';
@@ -40,7 +40,7 @@ function calculate(event) {
     document.getElementById('infoinput2').value = data.infoinput2 || '';
     document.getElementById('infoinput3').value = data.infoinput3 || '';
     document.getElementById('infoinput4').value = data.infoinput4 || '';
-    // <<<<<<<<<< เพิ่มรายการ... 
+    // <<<<<<<<<< เพิ่มรายการ... (input)
   });
 }
 
@@ -63,7 +63,7 @@ socket.on('calculatedResult', (data) => { // รับผลลัพธ์ท�
   document.getElementById('signatureStatus1').innerText = data.signatureStatus1; // แสดงสถานะลายเซ็นต์ 1
   document.getElementById('signatureStatus2').innerText = data.signatureStatus2; // แสดงสถานะลายเซ็นต์ 2
   document.getElementById('signatureStatus3').innerText = data.signatureStatus3; // แสดงสถานะลายเซ็นต์ 3
-  // <<<<<<<<<< เพิ่มรายการ... 
+  // <<<<<<<<<< เพิ่มรายการ... (result)
 
   // ตั้งค่าปุ่มเลือกแบบตัวเลือก
   document.getElementById('radio1Option1').checked = data.radio1 === 'option1';
@@ -76,5 +76,5 @@ socket.on('calculatedResult', (data) => { // รับผลลัพธ์ท�
   document.getElementById('infoinput2').value = data.infoinput2 || '';
   document.getElementById('infoinput3').value = data.infoinput3 || '';
   document.getElementById('infoinput4').value = data.infoinput4 || '';
-  // <<<<<<<<<< เพิ่มรายการ... 
+  // <<<<<<<<<< เพิ่มรายการ... (input)
 });

@@ -17,7 +17,7 @@ function fetchInputs() {
         if (data.inputs.radio2) {
           document.querySelector(`input[name="radio2"][value="${data.inputs.radio2}"]`).checked = true;
         }
-        // <<<<<<<<<< เพิ่มรายการ... 
+        // <<<<<<<<<< เพิ่มรายการ... (input)
 
         // เรียกฟังก์ชันส่งข้อมูลเพื่อแสดงผลลัพธ์เบื้องต้น
         sendInputs(data.inputs);
@@ -65,7 +65,7 @@ function sendInputs(inputs) {
     document.getElementById('infoinput2').value = data.infoinput2 || '';
     document.getElementById('infoinput3').value = data.infoinput3 || '';
     document.getElementById('infoinput4').value = data.infoinput4 || '';
-    // <<<<<<<<<< เพิ่มรายการ... 
+    // <<<<<<<<<< เพิ่มรายการ... (input)
 
     // อัพเดทสถานะของ signature1, signature2 และ signature3
     updateSignatureStatus('signature1', 'bg_signatureStatus1');

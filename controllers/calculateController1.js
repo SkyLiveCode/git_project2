@@ -26,7 +26,7 @@ exports.calculate = (req, res) => {
         infoinput2, 
         infoinput3, 
         infoinput4
-        // <<<<<<<<<< เพิ่มรายการ... 
+        // <<<<<<<<<< เพิ่มรายการ... (input)
     } = req.body; 
 
     const sumResult = sum(Number(calinput1), Number(calinput2));
@@ -34,7 +34,7 @@ exports.calculate = (req, res) => {
     const signatureStatus1 = signature1 ? 'Signed' : 'Not Signed';
     const signatureStatus2 = signature2 ? 'Signed' : 'Not Signed';
     const signatureStatus3 = signature3 ? 'Signed' : 'Not Signed';
-    // <<<<<<<<<< เพิ่มรายการ... 
+    // <<<<<<<<<< เพิ่มรายการ... (result)
 
 
     res.json({
@@ -49,7 +49,7 @@ exports.calculate = (req, res) => {
         infoinput2,
         infoinput3,
         infoinput4
-        // <<<<<<<<<< เพิ่มรายการ... 
+        // <<<<<<<<<< เพิ่มรายการ... (input & result)
     });
 };
 
@@ -91,7 +91,7 @@ exports.handleSocketConnection = (io) => {
             const signatureStatus1 = data.signature1 ? 'Signed' : 'Not Signed';
             const signatureStatus2 = data.signature2 ? 'Signed' : 'Not Signed';
             const signatureStatus3 = data.signature3 ? 'Signed' : 'Not Signed';
-            // <<<<<<<<<< เพิ่มรายการ... 
+            // <<<<<<<<<< เพิ่มรายการ... (result)
             socket.emit('calculatedResult', { 
                 sumResult, 
                 differenceResult, 
@@ -104,7 +104,7 @@ exports.handleSocketConnection = (io) => {
                 infoinput2: data.infoinput2,
                 infoinput3: data.infoinput3,
                 infoinput4: data.infoinput4
-                // <<<<<<<<<< เพิ่มรายการ... 
+                // <<<<<<<<<< เพิ่มรายการ... (info & result)
             });
         });
 

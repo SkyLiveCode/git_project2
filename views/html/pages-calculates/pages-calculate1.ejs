@@ -329,18 +329,15 @@
                         <div class="my-form-multisteps-form__progress">
                           <button class="my-form-multisteps-form__progress-btn js-active" type="button" title="Preventive Maintenance Report">
                             Preventive Maintenance Report<br>
-                            <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
-                            <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
+                            <span id="bg_signatureStatus1" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 1 -->
                           </button>
                           <button class="my-form-multisteps-form__progress-btn" type="button" title="Calibration Report">
                             Data of Calibration Report<br>
-                            <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
-                            <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
+                            <span id="bg_signatureStatus2" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 2 -->
                           </button>
                           <button class="my-form-multisteps-form__progress-btn" type="button" title="Success">
                             Report of Measurement Result<br>
-                            <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
-                            <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
+                            <span id="bg_signatureStatus3" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 3 -->
                           </button>
                         </div>
                       </div>
@@ -372,9 +369,12 @@
                                   <input type="text" value="<%= hospital[0].hospital_name %>" readonly/><br>
                                   <!-- ช่องใส่ลายเซ็นต์ -->
                                   <input type="text" id="signature1" name="signature1" placeholder="Signature 1" />
-                                  <button type="button" id="fillSignature1">Fill Signature 1</button>
-                                  <span id="bg_signatureStatus1" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 1 -->
+                                  <!-- แสดงลายเซ็นต์ -->
                                   <span id="displaySignature1"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input -->
+                                  <!-- ปุ่มกดของของลายเซ็นต์ 1 -->
+                                  <button type="button" id="fillSignature1" style="background: none; border: none; padding: 0;">
+                                    <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 1" style="margin-top: -4px; height: 33px; width: auto;" class="timestamp__image">
+                                  </button>
                                   <!-- / หน้า A -->
                                   <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">Save changes</button>
@@ -401,9 +401,12 @@
                                   <!-- / result -->
                                   <!-- ช่องใส่ลายเซ็นต์ -->
                                   <input type="text" id="signature2" name="signature2" placeholder="Signature 2" />
-                                  <button type="button" id="fillSignature2">Fill Signature 2</button>
-                                  <span id="bg_signatureStatus2" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 2 -->
+                                  <!-- แสดงลายเซ็นต์ -->
                                   <span id="displaySignature2"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input -->
+                                  <!-- ปุ่มกดของของลายเซ็นต์ 2 -->
+                                  <button type="button" id="fillSignature2" style="background: none; border: none; padding: 0;">
+                                    <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 2" style="margin-top: -4px; height: 33px; width: auto;" class="timestamp__image">
+                                  </button>
                                   <!-- / หน้า B -->
                                   <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">Save changes</button>
@@ -423,10 +426,13 @@
                                   <!-- หน้า C -->
                                   <!-- ช่องใส่ลายเซ็นต์ -->
                                   <input type="text" id="signature3" name="signature3" placeholder="Signature 3" />
-                                  <button type="button" id="fillSignature3">Fill Signature 3</button>
-                                  <span id="bg_signatureStatus3" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 3 -->
+                                  <!-- แสดงลายเซ็นต์ -->
+                                  <img id="signatureImage" src="" style="display:none; height: 65px; width: auto;" /> <!-- รูปภาพที่จะแสดงตามลายเซ็นต์ -->
                                   <span id="displaySignature3"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input --> 
-                                  <img id="signatureImage" src="" style="display:none;" /> <!-- รูปภาพที่จะแสดงตามลายเซ็นต์ -->
+                                  <!-- ปุ่มกดของของลายเซ็นต์ 2 -->
+                                  <button type="button" id="fillSignature3" style="background: none; border: none; padding: 0;">
+                                    <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 3" style="margin-top: -4px; height: 33px; width: auto;" class="timestamp__image">
+                                  </button>                                  
                                   <!-- / หน้า C -->
                                   <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">Save changes</button>

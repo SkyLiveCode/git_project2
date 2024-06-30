@@ -44,11 +44,12 @@ function sendInputs(inputs) {
     const signature3 = document.getElementById('signature3').value.toLowerCase();
     const signatureImage = document.getElementById('signatureImage');
     if (signature3 === 'sky') {
-      signatureImage.src = 'path_to_sky_image.jpg';
+      signatureImage.src = '../../assets/img/signature/path_to_sky_image.jpg';
       signatureImage.style.display = 'block';
     } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
-      signatureImage.src = 'path_to_nezuko_image.jpg';
+      signatureImage.src = "../../assets/img/signature/signature3.png";
       signatureImage.style.display = 'block';
+      console.log('Signature3 image displayed'); // Debugging statement
     } else {
       signatureImage.style.display = 'none';
     }
@@ -218,10 +219,10 @@ document.getElementById('signature3').addEventListener('input', function() {
   const signature3 = document.getElementById('signature3').value.toLowerCase();
   const signatureImage = document.getElementById('signatureImage');
   if (signature3 === 'sky') {
-    signatureImage.src = 'path_to_sky_image.jpg';
+    signatureImage.src = '../../assets/img/signature/path_to_sky_image.jpg';
     signatureImage.style.display = 'block';
   } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
-    signatureImage.src = 'path_to_nezuko_image.jpg';
+    signatureImage.src = '../../assets/img/signature/signature3.png';
     signatureImage.style.display = 'block';
   } else {
     signatureImage.style.display = 'none';

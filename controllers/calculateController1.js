@@ -2,11 +2,18 @@ const db = require('../config/database');
 const { sum } = require('../utils/util');
 
 // ฟังก์ชันแสดงหน้าคำนวณ
-exports.showCalculatePage = (req, res) => {
+exports.showCalculatePage = async (req, res) => {
     try {
         const { equipment_id, id_hospital, id_categories } = req.session;
         const user = req.session.user;
-        res.render('html/pages-calculates/pages-calculate1', { equipment_id, id_hospital, id_categories, user });
+
+        // ดึงข้อมูล equipment โดยใช้ id_hospital
+        const [equipment] = await db.query('SELECT * FROM equipment WHERE id = ?', [equipment_id]);
+
+        // ดึงข้อมูล hospital โดยใช้ id_hospital ที่ได้จาก equipment
+        const [hospital] = await db.query('SELECT * FROM hospital WHERE id = ?', [id_hospital]);
+
+        res.render('html/pages-calculates/pages-calculate1', { equipment_id, id_hospital, id_categories, user, equipment, hospital });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');

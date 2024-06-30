@@ -17,7 +17,6 @@ function fetchInputs() {
         if (data.inputs.radio2) {
           document.querySelector(`input[name="radio2"][value="${data.inputs.radio2}"]`).checked = true;
         }
-        // <<<<<<<<<< เพิ่มรายการ... (input)
 
         // เรียกฟังก์ชันส่งข้อมูลเพื่อแสดงผลลัพธ์เบื้องต้น
         sendInputs(data.inputs);
@@ -26,6 +25,9 @@ function fetchInputs() {
         updateSignatureStatus('signature1', 'bg_signatureStatus1');
         updateSignatureStatus('signature2', 'bg_signatureStatus2');
         updateSignatureStatus('signature3', 'bg_signatureStatus3');
+
+        // Update display spans with initial values
+        updateDisplaySpans();
       }
     });
 }
@@ -37,7 +39,6 @@ function sendInputs(inputs) {
   socket.on('calculatedResult', (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
     document.getElementById('sumResult').textContent = data.sumResult;
     document.getElementById('differenceResult').textContent = data.differenceResult;
-    // <<<<<<<<<< เพิ่มรายการ... (result)
 
     // แสดง/ซ่อนรูปภาพตามลายเซ็นต์ 3
     const signature3 = document.getElementById('signature3').value.toLowerCase();
@@ -63,44 +64,118 @@ function sendInputs(inputs) {
     document.getElementById('infoinput2').value = data.infoinput2 || '';
     document.getElementById('infoinput3').value = data.infoinput3 || '';
     document.getElementById('infoinput4').value = data.infoinput4 || '';
-    // <<<<<<<<<< เพิ่มรายการ... (input)
 
     // อัพเดทสถานะของ signature1, signature2 และ signature3
     updateSignatureStatus('signature1', 'bg_signatureStatus1');
     updateSignatureStatus('signature2', 'bg_signatureStatus2');
     updateSignatureStatus('signature3', 'bg_signatureStatus3');
+
+    // Update display spans with received values
+    updateDisplaySpans();
   });
+}
+
+// ฟังก์ชันสำหรับอัพเดทสถานะของ signature
+function updateSignatureStatus(inputId, statusId) {
+  const inputElement = document.getElementById(inputId);
+  const statusElement = document.getElementById(statusId);
+
+  if (inputElement.value) {
+    statusElement.className = "mt-2 badge rounded-pill bg-success";
+    statusElement.textContent = "Completed";
+  } else {
+    statusElement.className = "mt-2 badge rounded-pill bg-warning";
+    statusElement.textContent = "Pending";
+  }
+}
+
+// ฟังก์ชันสำหรับดึงข้อมูล inputs จากฟอร์ม
+function getInputs() {
+  const inputs = {};
+  document.querySelectorAll('#calcForm input, #calcForm textarea').forEach(input => {
+    if (input.type === 'radio') {
+      if (input.checked) {
+        inputs[input.name] = input.value;
+      }
+    } else {
+      inputs[input.name] = input.value;
+    }
+  });
+  return inputs;
+}
+
+// ฟังก์ชันเพื่ออัพเดทการแสดงผลของ spans
+function updateDisplaySpans() {
+  document.getElementById('displaySignature1').textContent = document.getElementById('signature1').value;
+  document.getElementById('displaySignature2').textContent = document.getElementById('signature2').value;
+  document.getElementById('displaySignature3').textContent = document.getElementById('signature3').value;
 }
 
 // เรียกฟังก์ชัน fetchInputs เมื่อโหลดหน้าเว็บ
 document.addEventListener('DOMContentLoaded', fetchInputs); // ดึงข้อมูล inputs เมื่อโหลดหน้าเว็บ
 
-// ฟังก์ชันสำหรับกรอกข้อมูลลายเซ็นต์
+// เพิ่ม event listener สำหรับการส่งฟอร์ม
+document.getElementById('calcForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const inputs = getInputs();
+
+  fetch('/update-inputs1', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ inputs: inputs }),
+  }).then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert('Inputs updated successfully');
+        sendInputs(inputs);
+      }
+    });
+});
+
+// Event listeners for buttons to fill signatures and update displays
 document.getElementById('fillSignature1').addEventListener('click', function() {
   const signature1Input = document.getElementById('signature1');
   if (!signature1Input.value) {
     signature1Input.value = userName;
-    sendInputs(getInputs());
   }
-  updateSignatureStatus('signature1', 'bg_signatureStatus1'); // อัพเดทสถานะของ signature1
+  document.getElementById('displaySignature1').textContent = signature1Input.value;
+  updateSignatureStatus('signature1', 'bg_signatureStatus1');
 });
 
 document.getElementById('fillSignature2').addEventListener('click', function() {
   const signature2Input = document.getElementById('signature2');
   if (!signature2Input.value) {
     signature2Input.value = userName;
-    sendInputs(getInputs());
   }
-  updateSignatureStatus('signature2', 'bg_signatureStatus2'); // อัพเดทสถานะของ signature2
+  document.getElementById('displaySignature2').textContent = signature2Input.value;
+  updateSignatureStatus('signature2', 'bg_signatureStatus2');
 });
 
 document.getElementById('fillSignature3').addEventListener('click', function() {
   const signature3Input = document.getElementById('signature3');
   if (!signature3Input.value) {
     signature3Input.value = userName;
-    sendInputs(getInputs());
   }
-  updateSignatureStatus('signature3', 'bg_signatureStatus3'); // อัพเดทสถานะของ signature3
+  document.getElementById('displaySignature3').textContent = signature3Input.value;
+  updateSignatureStatus('signature3', 'bg_signatureStatus3');
+});
+
+// Add input event listeners to update the display spans in real-time
+document.getElementById('signature1').addEventListener('input', function() {
+  document.getElementById('displaySignature1').textContent = this.value;
+  updateSignatureStatus('signature1', 'bg_signatureStatus1');
+});
+
+document.getElementById('signature2').addEventListener('input', function() {
+  document.getElementById('displaySignature2').textContent = this.value;
+  updateSignatureStatus('signature2', 'bg_signatureStatus2');
+});
+
+document.getElementById('signature3').addEventListener('input', function() {
+  document.getElementById('displaySignature3').textContent = this.value;
+  updateSignatureStatus('signature3', 'bg_signatureStatus3');
 });
 
 // ฟังก์ชันสำหรับดึงข้อมูล inputs จากฟอร์ม

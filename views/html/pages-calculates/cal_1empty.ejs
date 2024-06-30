@@ -319,133 +319,94 @@
               <!-- / เปลี่ยน Form bar -->
 
               <!-- เปลี่ยนรายการ -->
-              <form id="calcForm" method="POST">
-                <div class="my-form">
-                  <!-- ฟอร์มหลายขั้นตอน -->
-                  <div class="my-form-multisteps-form">
-                    <div class="row">
-                      <div class="col-12 col-lg-8 ml-auto m-auto mb-4 mt-4">
-                        <!-- Progress bar ของฟอร์มหลายขั้นตอน -->
-                        <div class="my-form-multisteps-form__progress">
-                          <button class="my-form-multisteps-form__progress-btn js-active" type="button" title="Preventive Maintenance Report">
-                            Preventive Maintenance Report<br>
-                            <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
-                            <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
-                          </button>
-                          <button class="my-form-multisteps-form__progress-btn" type="button" title="Calibration Report">
-                            Data of Calibration Report<br>
-                            <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
-                            <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
-                          </button>
-                          <button class="my-form-multisteps-form__progress-btn" type="button" title="Success">
-                            Report of Measurement Result<br>
-                            <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
-                            <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
-                          </button>
-                        </div>
+              <div class="my-form">
+                <!-- ฟอร์มหลายขั้นตอน -->
+                <div class="my-form-multisteps-form">
+                  <div class="row">
+                    <div class="col-12 col-lg-8 ml-auto m-auto mb-4 mt-4">
+                      <!-- Progress bar ของฟอร์มหลายขั้นตอน -->
+                      <div class="my-form-multisteps-form__progress">
+                        <button class="my-form-multisteps-form__progress-btn js-active" type="button" title="Preventive Maintenance Report">
+                          Preventive Maintenance Report<br>
+                          <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
+                          <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
+                        </button>
+                        <button class="my-form-multisteps-form__progress-btn" type="button" title="Calibration Report">
+                          Data of Calibration Report<br>
+                          <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
+                          <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
+                        </button>
+                        <button class="my-form-multisteps-form__progress-btn" type="button" title="Success">
+                          Report of Measurement Result<br>
+                          <span class="mt-2 badge rounded-pill bg-warning">Pending</span>
+                          <!-- <span class="mt-2 badge rounded-pill bg-success">Completed</span> -->
+                        </button>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="m-auto">
-                        <!-- ฟอร์มหลักของฟอร์มหลายขั้นตอน -->
-                        <form id="calcForm" method="POST">
-                          <div class="my-form-multisteps-form__form">
-                            <!-- แผง Preventive Maintenance Report -->
-                            <div class="my-form-multisteps-form__panel card mb-4 p-4 js-active" data-animation="fadeIn">                          
-                              <div class="">
-                                  <!-- หน้า A -->
-                                  <!-- ช่องใส่ข้อมูลการคำนวณ -->
-                                  <input type="text" id="calinput1" name="calinput1" placeholder="Calculation Input 1" />
-                                  <input type="text" id="calinput2" name="calinput2" placeholder="Calculation Input 2" /><br>
-                                  <input type="text" id="calinput3" name="calinput3" placeholder="Calculation Input 3" />
-                                  <input type="text" id="calinput4" name="calinput4" placeholder="Calculation Input 4" /><br>
-                                  <input type="text" id="infoinput1" name="infoinput1" placeholder="Info Input 1" />
-                                  <input type="text" id="infoinput2" name="infoinput2" placeholder="Info Input 2" /><br>
-                                  <input type="text" id="infoinput3" name="infoinput3" placeholder="Info Input 3" />
-                                  <input type="text" id="infoinput4" name="infoinput4" placeholder="Info Input 4" /><br>
-                                  <input type="text" value="<%= hospital[0].hospital_name %>" readonly/><br>
-                                  <!-- result -->
-                                  <h1>Sum Result: <span id="sumResult"></span></h1> <!-- แสดงผลรวม -->
-                                  <h1>Difference Result: <span id="differenceResult"></span></h1> <!-- แสดงผลต่าง -->
-                                  <!-- / result -->
-                                  <!-- / หน้า A -->
-                                  <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                    <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                                  </div>
+                  </div>
+                  <div class="row">
+                    <div class="m-auto">
+                      <!-- ฟอร์มหลักของฟอร์มหลายขั้นตอน -->
+                      <form id="calcForm" method="POST">
+                        <div class="my-form-multisteps-form__form">
+                          <!-- แผง Preventive Maintenance Report -->
+                          <div class="my-form-multisteps-form__panel card mb-4 p-4 js-active" data-animation="fadeIn">                          
+                            <div class="">
+                                <!-- หน้า A -->
+
+                                <!-- / หน้า A -->
+                                <div class="mt-2">
+                                  <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                  <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                              <div class="d-flex justify-content-center mx-auto gap-3 pt-4">
+                                <div style="flex-basis: 73px;"></div>
+                                <button class="btn btn-dark ml-auto js-btn-next" type="button" title="Next">Next</button>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- แผง Calibration Report -->
+                          <div class="my-form-multisteps-form__panel card mb-4 p-4" data-animation="fadeIn">
+                            <div class="">
+                                <!-- หน้า B -->
+
+                                <!-- / หน้า B -->
+                                <div class="mt-2">
+                                  <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                  <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                                </div>
+                              <div class="row">
                                 <div class="d-flex justify-content-center mx-auto gap-3 pt-4">
-                                  <div style="flex-basis: 73px;"></div>
+                                  <button class="btn btn-dark js-btn-prev" type="button" title="Prev">Prev</button>
                                   <button class="btn btn-dark ml-auto js-btn-next" type="button" title="Next">Next</button>
                                 </div>
                               </div>
                             </div>
-                            <!-- แผง Calibration Report -->
-                            <div class="my-form-multisteps-form__panel card mb-4 p-4" data-animation="fadeIn">
-                              <div class="">
-                                  <!-- หน้า B -->
-                                  <!-- ช่องใส่ลายเซ็นต์ -->
-                                  <input type="text" id="signature1" name="signature1" placeholder="Signature 1" />
-                                  <button type="button" id="fillSignature1">Fill Signature 1</button>
-                                  <span id="bg_signatureStatus1" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 1 -->
-                                  <span id="displaySignature1"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input -->
-                                  
-                                  <input type="text" id="signature2" name="signature2" placeholder="Signature 2" />
-                                  <button type="button" id="fillSignature2">Fill Signature 2</button>
-                                  <span id="bg_signatureStatus2" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 2 -->
-                                  <span id="displaySignature2"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input -->
-                                  
-                                  <input type="text" id="signature3" name="signature3" placeholder="Signature 3" />
-                                  <button type="button" id="fillSignature3">Fill Signature 3</button>
-                                  <span id="bg_signatureStatus3" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 3 -->
-                                  <span id="displaySignature3"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input -->
- 
-                                  <img id="signatureImage" src="" style="display:none;" /> <!-- รูปภาพที่จะแสดงตามลายเซ็นต์ -->
-                                  <!-- / result -->
-                                  <!-- / หน้า B -->
-                                  <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                    <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                                  </div>
-                                <div class="row">
-                                  <div class="d-flex justify-content-center mx-auto gap-3 pt-4">
-                                    <button class="btn btn-dark js-btn-prev" type="button" title="Prev">Prev</button>
-                                    <button class="btn btn-dark ml-auto js-btn-next" type="button" title="Next">Next</button>
-                                  </div>
+                          </div>
+                          <!-- Report of Measurement Result -->
+                          <div class="my-form-multisteps-form__panel card mb-4 p-4" data-animation="fadeIn">                          
+                            <div class="">
+                                <!-- หน้า C -->
+
+                                <!-- / หน้า C -->
+                                <div class="mt-2">
+                                  <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                  <button type="reset" class="btn btn-outline-secondary">Cancel</button>
                                 </div>
-                              </div>
-                            </div>
-                            <!-- Report of Measurement Result -->
-                            <div class="my-form-multisteps-form__panel card mb-4 p-4" data-animation="fadeIn">                          
-                              <div class="">
-                                  <!-- หน้า C -->
-                                  <!-- ปุ่มเลือกแบบตัวเลือก -->
-                                  <input type="radio" name="radio1" value="option1" id="radio1Option1">Option 1
-                                  <input type="radio" name="radio1" value="option2" id="radio1Option2">Option 2
-                                  <input type="radio" name="radio1" value="option3" id="radio1Option3">Option 3<br>
-                                  
-                                  <input type="radio" name="radio2" value="option1" id="radio2Option1">Option 1
-                                  <input type="radio" name="radio2" value="option2" id="radio2Option2">Option 2
-                                  <input type="radio" name="radio2" value="option3" id="radio2Option3">Option 3<br>
-                                  <!-- / หน้า C -->
-                                  <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                    <button type="reset" class="btn btn-outline-secondary">Cancel</button>
-                                  </div>
-                                <div class="row">                              
-                                  <div class="d-flex justify-content-center mx-auto gap-3 pt-4">
-                                    <button class="btn btn-dark js-btn-prev" type="button" title="Prev">Prev</button>
-                                    <button class="btn btn-success ml-auto" type="button" title="Send">Send</button>
-                                  </div>
+                              <div class="row">                              
+                                <div class="d-flex justify-content-center mx-auto gap-3 pt-4">
+                                  <button class="btn btn-dark js-btn-prev" type="button" title="Prev">Prev</button>
+                                  <button class="btn btn-success ml-auto" type="button" title="Send">Send</button>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </form>
-                      </div>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
-              </form>
+              </div>
               <!-- / เปลี่ยนรายการ -->
           </div>
           <!-- / Content -->

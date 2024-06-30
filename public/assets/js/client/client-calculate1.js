@@ -39,7 +39,7 @@ function sendInputs(inputs) {
   socket.on('calculatedResult', (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
     document.getElementById('sumResult').textContent = data.sumResult;
     document.getElementById('differenceResult').textContent = data.differenceResult;
-
+    
     // แสดง/ซ่อนรูปภาพตามลายเซ็นต์ 3
     const signature3 = document.getElementById('signature3').value.toLowerCase();
     const signatureImage = document.getElementById('signatureImage');
@@ -49,7 +49,6 @@ function sendInputs(inputs) {
     } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
       signatureImage.src = "../../assets/img/signature/signature3.png";
       signatureImage.style.display = 'block';
-      console.log('Signature3 image displayed'); // Debugging statement
     } else {
       signatureImage.style.display = 'none';
     }
@@ -65,12 +64,13 @@ function sendInputs(inputs) {
     document.getElementById('infoinput2').value = data.infoinput2 || '';
     document.getElementById('infoinput3').value = data.infoinput3 || '';
     document.getElementById('infoinput4').value = data.infoinput4 || '';
+    // <<<<<<<<<< เพิ่มรายการ... (input)
 
     // อัพเดทสถานะของ signature1, signature2 และ signature3
     updateSignatureStatus('signature1', 'bg_signatureStatus1');
     updateSignatureStatus('signature2', 'bg_signatureStatus2');
     updateSignatureStatus('signature3', 'bg_signatureStatus3');
-
+    
     // Update display spans with received values
     updateDisplaySpans();
   });
@@ -140,27 +140,30 @@ document.getElementById('fillSignature1').addEventListener('click', function() {
   const signature1Input = document.getElementById('signature1');
   if (!signature1Input.value) {
     signature1Input.value = userName;
+    sendInputs(getInputs());
   }
   document.getElementById('displaySignature1').textContent = signature1Input.value;
-  updateSignatureStatus('signature1', 'bg_signatureStatus1');
+  updateSignatureStatus('signature1', 'bg_signatureStatus1'); // อัพเดทสถานะของ signature1
 });
 
 document.getElementById('fillSignature2').addEventListener('click', function() {
   const signature2Input = document.getElementById('signature2');
   if (!signature2Input.value) {
     signature2Input.value = userName;
+    sendInputs(getInputs());
   }
   document.getElementById('displaySignature2').textContent = signature2Input.value;
-  updateSignatureStatus('signature2', 'bg_signatureStatus2');
+  updateSignatureStatus('signature2', 'bg_signatureStatus2'); // อัพเดทสถานะของ signature2
 });
 
 document.getElementById('fillSignature3').addEventListener('click', function() {
   const signature3Input = document.getElementById('signature3');
   if (!signature3Input.value) {
     signature3Input.value = userName;
+    sendInputs(getInputs());
   }
   document.getElementById('displaySignature3').textContent = signature3Input.value;
-  updateSignatureStatus('signature3', 'bg_signatureStatus3');
+  updateSignatureStatus('signature3', 'bg_signatureStatus3'); // อัพเดทสถานะของ signature3
 });
 
 // Add input event listeners to update the display spans in real-time

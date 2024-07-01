@@ -1,0 +1,208 @@
+<form id="calcForm" method="POST">
+  <!-- ช่องใส่ข้อมูลการคำนวณ -->
+  <input type="text" id="calinput1" name="calinput1" placeholder="Calculation Input 1" /> <!-- used -->
+  <input type="text" id="calinput2" name="calinput2" placeholder="Calculation Input 2" /> <!-- used -->
+  <input type="text" id="calinput3" name="calinput3" placeholder="Calculation Input 3" /> <!-- used -->
+  <input type="text" id="calinput4" name="calinput4" placeholder="Calculation Input 4" /> <!-- used -->
+  <!-- addon -->
+  <input type="text" id="calinput5" name="calinput5" placeholder="Calculation Input 5" /> <!-- used -->
+  <input type="text" id="calinput6" name="calinput6" placeholder="Calculation Input 6" /> <!-- used -->
+  <input type="text" id="calinput7" name="calinput7" placeholder="Calculation Input 7" /> <!-- used -->
+  <input type="text" id="calinput8" name="calinput8" placeholder="Calculation Input 8" /> <!-- used -->
+  <input type="text" id="calinput9" name="calinput9" placeholder="Calculation Input 9" /> <!-- used -->
+  <input type="text" id="calinput10" name="calinput10" placeholder="Calculation Input 10" /> <!-- used -->
+  <input type="text" id="calinput11" name="calinput11" placeholder="Calculation Input 11" /> <!-- used -->
+  <input type="text" id="calinput12" name="calinput12" placeholder="Calculation Input 12" /> <!-- used -->
+  <input type="text" id="calinput13" name="calinput13" placeholder="Calculation Input 13" /> <!-- used -->
+  <input type="text" id="calinput14" name="calinput14" placeholder="Calculation Input 14" /> <!-- used -->
+  <input type="text" id="calinput15" name="calinput15" placeholder="Calculation Input 15" /> <!-- used -->
+  <input type="text" id="calinput16" name="calinput16" placeholder="Calculation Input 16" /> <!-- used -->
+  <input type="text" id="calinput17" name="calinput17" placeholder="Calculation Input 17" /> <!-- used -->
+  <input type="text" id="calinput18" name="calinput18" placeholder="Calculation Input 18" /> <!-- used -->
+  <input type="text" id="calinput19" name="calinput19" placeholder="Calculation Input 19" /> <!-- used -->
+  <input type="text" id="calinput20" name="calinput20" placeholder="Calculation Input 20" /> <!-- used -->
+  <input type="text" id="calinput21" name="calinput21" placeholder="Calculation Input 21" /> <!-- used -->
+  <input type="text" id="calinput22" name="calinput22" placeholder="Calculation Input 22" /> <!-- used -->
+  <input type="text" id="calinput23" name="calinput23" placeholder="Calculation Input 23" /> <!-- used -->
+  <input type="text" id="calinput24" name="calinput24" placeholder="Calculation Input 24" /> <!-- used -->
+  <!-- / addon -->
+  <input type="text" id="infoinput1" name="infoinput1" placeholder="Info Input 1" />           <!-- used -->
+  <input type="text" id="infoinput2" name="infoinput2" placeholder="Info Input 2" /><br>       <!-- used -->
+  <input type="text" id="infoinput3" name="infoinput3" placeholder="Info Input 3" />           <!-- used -->
+  <input type="text" id="infoinput4" name="infoinput4" placeholder="Info Input 4" /><br>       <!-- used -->
+  <!-- addon -->
+  <input type="text" id="infoinput5" name="infoinput5" placeholder="Info Input 5" /><br>       <!-- used -->
+  <input type="text" id="infoinput6" name="infoinput6" placeholder="Info Input 6" /><br>       <!-- used -->
+  <input type="text" id="infoinput7" name="infoinput7" placeholder="Info Input 7" /><br>       <!-- used -->
+  <input type="text" id="infoinput8" name="infoinput8" placeholder="Info Input 8" /><br>       <!-- used -->
+  <input type="text" id="infoinput9" name="infoinput9" placeholder="Info Input 9" /><br>       <!-- used -->
+  <input type="text" id="infoinput10" name="infoinput10" placeholder="Info Input 10" /><br>    <!-- used -->
+  <input type="text" id="infoinput11" name="infoinput11" placeholder="Info Input 11" /><br>    <!-- used -->
+  <input type="text" id="infoinput12" name="infoinput12" placeholder="Info Input 12" /><br>    <!-- used -->
+  <input type="text" id="infoinput13" name="infoinput13" placeholder="Info Input 13" /><br>    <!-- used -->
+  <input type="text" id="infoinput14" name="infoinput14" placeholder="Info Input 14" /><br>    <!-- used -->
+  <input type="text" id="infoinput15" name="infoinput15" placeholder="Info Input 15" /><br>    <!-- used -->
+  <input type="text" id="infoinput16" name="infoinput16" placeholder="Info Input 16" /><br>    <!-- used -->
+  <input type="text" id="infoinput17" name="infoinput17" placeholder="Info Input 17" /><br>    <!-- used -->
+  <input type="text" id="infoinput18" name="infoinput18" placeholder="Info Input 18" /><br>    <!-- used -->
+  <input type="text" id="infoinput19" name="infoinput19" placeholder="Info Input 19" /><br>    <!-- used -->
+  <!-- / addon -->
+  <input type="text" value="<%= hospital[0].hospital_name %>" readonly/><br>                   <!-- used -->
+
+  <!-- ช่องใส่ลายเซ็นต์ -->
+  <input type="text" id="signature1" name="signature1" placeholder="Signature 1" /> <!-- used -->
+  <button type="button" id="fillSignature1">Fill Signature 1</button> <!-- used -->
+  <!--
+  <button type="button" id="fillSignature1" style="background: none; border: none; padding: 0;">
+    <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 1" style="margin-top: -4px; height: 33px; width: auto;" class="timestamp__image">
+  </button>
+  -->
+  <span id="bg_signatureStatus1" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 1 -->
+
+  <input type="text" id="signature2" name="signature2" placeholder="Signature 2" /> <!-- used -->
+  <button type="button" id="fillSignature2">Fill Signature 2</button> <!-- used -->
+  <span id="bg_signatureStatus2" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 2 -->
+
+  <input type="text" id="signature3" name="signature3" placeholder="Signature 3" />
+  <button type="button" id="fillSignature3">Fill Signature 3</button>
+  <span id="bg_signatureStatus3" class="mt-2 badge rounded-pill"></span><br> <!-- สถานะของลายเซ็นต์ 3 -->
+
+  <!-- ช่องใส่ข้อความ -->
+  <!-- addon -->
+  <textarea id="textarea5" name="textarea5" placeholder="Textarea 5"></textarea><br>
+  <textarea id="textarea6" name="textarea6" placeholder="Textarea 6"></textarea><br>
+  <textarea id="textarea7" name="textarea7" placeholder="Textarea 7"></textarea><br>
+  <textarea id="textarea8" name="textarea8" placeholder="Textarea 8"></textarea><br>
+  <textarea id="textarea9" name="textarea9" placeholder="Textarea 9"></textarea><br>
+  <textarea id="textarea10" name="textarea10" placeholder="Textarea 10"></textarea><br>
+  <textarea id="textarea11" name="textarea11" placeholder="Textarea 11"></textarea><br>
+  <textarea id="textarea12" name="textarea12" placeholder="Textarea 12"></textarea><br>
+  <textarea id="textarea13" name="textarea13" placeholder="Textarea 13"></textarea><br>
+  <textarea id="textarea14" name="textarea14" placeholder="Textarea 14"></textarea><br>
+  <textarea id="textarea15" name="textarea15" placeholder="Textarea 15"></textarea><br>
+  <textarea id="textarea16" name="textarea16" placeholder="Textarea 16"></textarea><br>
+  <textarea id="textarea17" name="textarea17" placeholder="Textarea 17"></textarea><br>
+  <!-- / addon -->
+
+  <!-- ปุ่มเลือกแบบตัวเลือก -->
+   <!-- รายการที่ 1 -->
+  <input type="radio" name="radio1" value="option1" id="radio1Option1">Option 1      <!-- used -->
+  <input type="radio" name="radio1" value="option2" id="radio1Option2">Option 2      <!-- used -->
+  <input type="radio" name="radio1" value="option3" id="radio1Option3">Option 3      <!-- used -->
+  <textarea id="textarea1" name="textarea1" placeholder="Textarea 1"></textarea>     <!-- used -->
+
+  <!-- รายการที่ 2 -->
+  <input type="radio" name="radio2" value="option1" id="radio2Option1">Option 1      <!-- used -->
+  <input type="radio" name="radio2" value="option2" id="radio2Option2">Option 2      <!-- used -->
+  <input type="radio" name="radio2" value="option3" id="radio2Option3">Option 3      <!-- used -->
+  <textarea id="textarea2" name="textarea2" placeholder="Textarea 2"></textarea>     <!-- used -->
+  <!-- addon -->
+   <!-- รายการที่ 3 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio3" value="option1" id="radio3Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio3" value="option2" id="radio3Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio3" value="option3" id="radio3Option3">
+  <textarea class="form-control" id="textarea3" name="textarea3" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 4 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio4" value="option1" id="radio4Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio4" value="option2" id="radio4Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio4" value="option3" id="radio4Option3">
+  <textarea class="form-control" id="textarea4" name="textarea4" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 5 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio5" value="option1" id="radio5Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio5" value="option2" id="radio5Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio5" value="option3" id="radio5Option3">
+  <textarea class="form-control" id="textarea5" name="textarea5" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 6 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio6" value="option1" id="radio6Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio6" value="option2" id="radio6Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio6" value="option3" id="radio6Option3">
+  <textarea class="form-control" id="textarea6" name="textarea6" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 7 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio7" value="option1" id="radio7Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio7" value="option2" id="radio7Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio7" value="option3" id="radio7Option3">
+  <textarea class="form-control" id="textarea7" name="textarea7" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 8 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio8" value="option1" id="radio8Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio8" value="option2" id="radio8Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio8" value="option3" id="radio8Option3">
+  <textarea class="form-control" id="textarea8" name="textarea8" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 9 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio9" value="option1" id="radio9Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio9" value="option2" id="radio9Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio9" value="option3" id="radio9Option3">
+  <textarea class="form-control" id="textarea9" name="textarea9" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 10 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio10" value="option1" id="radio10Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio10" value="option2" id="radio10Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio10" value="option3" id="radio10Option3">
+  <textarea class="form-control" id="textarea10" name="textarea10" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 11 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio11" value="option1" id="radio11Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio11" value="option2" id="radio11Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio11" value="option3" id="radio11Option3">
+  <textarea class="form-control" id="textarea11" name="textarea11" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 12 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio12" value="option1" id="radio12Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio12" value="option2" id="radio12Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio12" value="option3" id="radio12Option3">
+  <textarea class="form-control" id="textarea12" name="textarea12" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 13 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio13" value="option1" id="radio13Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio13" value="option2" id="radio13Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio13" value="option3" id="radio13Option3">
+  <textarea class="form-control" id="textarea13" name="textarea13" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 14 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio14" value="option1" id="radio14Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio14" value="option2" id="radio14Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio14" value="option3" id="radio14Option3">
+  <textarea class="form-control" id="textarea14" name="textarea14" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 15 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio15" value="option1" id="radio15Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio15" value="option2" id="radio15Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio15" value="option3" id="radio15Option3">
+  <textarea class="form-control" id="textarea15" name="textarea15" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 16 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio16" value="option1" id="radio16Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio16" value="option2" id="radio16Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio16" value="option3" id="radio16Option3">
+  <textarea class="form-control" id="textarea16" name="textarea16" rows="3" style="height: 17px;"></textarea>
+  
+  <!-- รายการที่ 17 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio17" value="option1" id="radio17Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio17" value="option2" id="radio17Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio17" value="option3" id="radio17Option3">
+  <textarea class="form-control" id="textarea17" name="textarea17" rows="3" style="height: 17px;"></textarea>
+
+  <!-- รายการที่ 18 -->       <!-- used -->
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio18" value="option1" id="radio18Option1">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio18" value="option2" id="radio18Option2">
+  <input style="border: 1px solid #233446;" class="form-check-input" type="radio" name="radio18" value="option3" id="radio18Option3">
+  <!-- / addon -->
+  
+  <!-- <<<<<<<<<< เพิ่มรายการ... (input) -->
+
+  <button type="submit">Submit</button> <!-- ปุ่มส่งฟอร์ม -->
+</form>
+
+<!-- <<<<<<<<<< เพิ่มรายการ... (result) -->
+<h1>Sum Result: <span id="sumResult"></span></h1> <!-- แสดงผลรวม -->
+<h1>Difference Result: <span id="differenceResult"></span></h1> <!-- แสดงผลต่าง -->
+<h1>Signature 1 Status: <span id="signatureStatus1"></span></h1> <!-- แสดงสถานะลายเซ็นต์ 1 -->
+<h1>Signature 2 Status: <span id="signatureStatus2"></span></h1> <!-- แสดงสถานะลายเซ็นต์ 2 -->
+<h1>Signature 3 Status: <span id="signatureStatus3"></span></h1> <!-- แสดงสถานะลายเซ็นต์ 3 -->
+
+<img id="signatureImage" src="" style="display:none;" /> <!-- รูปภาพที่จะแสดงตามลายเซ็นต์ -->

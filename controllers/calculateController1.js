@@ -1,6 +1,15 @@
 const db = require('../config/database');
 const { sum } = require('../utils/util');
 
+// ฟังก์ชันสำหรับการคำนวณ
+const calculateResults = (inputs) => {
+    const sumResult = sum(Number(inputs.calinput1), Number(inputs.calinput2));
+    const differenceResult = Number(inputs.calinput3) - Number(inputs.calinput4);
+    // <<<<<<<<<< เพิ่มรายการ... (result)
+
+    return { sumResult, differenceResult };
+};
+
 // ฟังก์ชันแสดงหน้าคำนวณ
 exports.showCalculatePage = async (req, res) => {
     try {
@@ -22,63 +31,9 @@ exports.showCalculatePage = async (req, res) => {
 
 // ฟังก์ชันคำนวณและส่งผลลัพธ์กลับ
 exports.calculate = (req, res) => {
-    const { 
-        calinput1, 
-        calinput2, 
-        calinput3, 
-        calinput4, 
-        calinput5, 
-        calinput6, 
-        calinput7, 
-        calinput8, 
-        calinput9, 
-        calinput10, 
-        calinput11, 
-        calinput12, 
-        calinput13, 
-        calinput14, 
-        calinput15, 
-        calinput16, 
-        calinput17, 
-        calinput18, 
-        calinput19, 
-        calinput20, 
-        calinput21, 
-        calinput22, 
-        calinput23, 
-        calinput24,
-        signature1, 
-        signature2, 
-        signature3, 
-        textarea1, 
-        textarea2, 
-        textarea3, 
-        textarea4, 
-        textarea5, 
-        textarea6, 
-        textarea7, 
-        textarea8, 
-        textarea9, 
-        textarea10, 
-        textarea11, 
-        textarea12, 
-        textarea13, 
-        textarea14, 
-        textarea15, 
-        textarea16, 
-        textarea17
-        // <<<<<<<<<< เพิ่มรายการ... (input)
-    } = req.body; 
+    const results = calculateResults(req.body);
 
-    const sumResult = sum(Number(calinput1), Number(calinput2));
-    const differenceResult = Number(calinput3) - Number(calinput4);
-    // <<<<<<<<<< เพิ่มรายการ... (result)
-
-    res.json({
-        sumResult,
-        differenceResult
-        // <<<<<<<<<< เพิ่มรายการ... (result)
-    });
+    res.json(results);
 };
 
 // ฟังก์ชันสำหรับดึงข้อมูล inputs จากฐานข้อมูล
@@ -114,14 +69,8 @@ exports.handleSocketConnection = (io) => {
         console.log('New client connected'); // แสดงข้อความเมื่อมีการเชื่อมต่อใหม่จากไคลเอนต์
 
         socket.on('calculate', (data) => {
-            const sumResult = sum(Number(data.calinput1), Number(data.calinput2));
-            const differenceResult = Number(data.calinput3) - Number(data.calinput4);
-            // <<<<<<<<<< เพิ่มรายการ... (result)
-            socket.emit('calculatedResult', { 
-                sumResult, 
-                differenceResult
-                // <<<<<<<<<< เพิ่มรายการ... (result)
-            });
+            const results = calculateResults(data);
+            socket.emit('calculatedResult', results);
         });
 
         socket.on('disconnect', () => {

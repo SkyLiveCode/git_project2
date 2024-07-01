@@ -88,26 +88,6 @@ function updateDisplaySpans() {
 // เรียกฟังก์ชัน fetchInputs เมื่อโหลดหน้าเว็บ
 document.addEventListener('DOMContentLoaded', fetchInputs); // ดึงข้อมูล inputs เมื่อโหลดหน้าเว็บ
 
-// เพิ่ม event listener สำหรับการส่งฟอร์ม
-document.getElementById('calcForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const inputs = getInputs();
-
-  fetch('/update-inputs1', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ inputs: inputs }),
-  }).then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        alert('Inputs updated successfully');
-        sendInputs(inputs);
-      }
-    });
-});
-
 // Event listeners for buttons to fill signatures and update displays
 document.getElementById('fillSignature1').addEventListener('click', function() {
   const signature1Input = document.getElementById('signature1');

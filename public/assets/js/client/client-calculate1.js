@@ -1,3 +1,24 @@
+// ฟังก์ชันสำหรับอัพเดทการแสดงผลของ calculation inputs
+function updateCalculationInputs(inputs) {
+  const inputIds = [
+    'calinput5', 'calinput6', 'calinput7', 'calinput8', 
+    // <<<<<<<<<< เพิ่มรายการ... (result)
+  ];
+
+  inputIds.forEach(inputId => {
+    updateCalInputDisplay(inputId, inputs);
+  });
+}
+
+// ฟังก์ชันเพื่ออัพเดทการแสดงผลของ calculation inputs เดี่ยวๆ
+function updateCalInputDisplay(inputId, inputs) {
+  const inputValue = inputs ? inputs[inputId] : document.getElementById(inputId).value;
+  const displayElement = document.getElementById(`display${inputId}`);
+  if (displayElement) {
+      displayElement.textContent = inputValue;
+  }
+}
+
 // ฟังก์ชันสำหรับดึงข้อมูล inputs จากเซิร์ฟเวอร์
 function fetchInputs() {
   fetch('/get-inputs1') // เรียกข้อมูลจากเซิร์ฟเวอร์
@@ -28,11 +49,8 @@ function fetchInputs() {
         // อัพเดทการแสดงผลของ spans ด้วยค่าเริ่มต้น
         updateDisplaySpans();
 
-        // อัพเดทการแสดงผลของ calculation inputs ด้วยค่าเริ่มต้น
-        updateCalInputDisplay('calinput5');
-        updateCalInputDisplay('calinput6');
-        updateCalInputDisplay('calinput7');
-        updateCalInputDisplay('calinput8');
+        // เรียกฟังก์ชันเพื่ออัพเดทการแสดงผลของ calculation inputs
+        updateCalculationInputs(data.inputs);
       }
     });
 }
@@ -102,15 +120,6 @@ function updateDisplaySpans() {
   document.getElementById('displaySignature1').textContent = document.getElementById('signature1').value;
   document.getElementById('displaySignature2').textContent = document.getElementById('signature2').value;
   document.getElementById('displaySignature3').textContent = document.getElementById('signature3').value;
-}
-
-// ฟังก์ชันเพื่ออัพเดทการแสดงผลของ calculation inputs
-function updateCalInputDisplay(inputId) {
-  const inputValue = document.getElementById(inputId).value;
-  const displayElement = document.getElementById(`display${inputId}`);
-  if (displayElement) {
-      displayElement.textContent = inputValue;
-  }
 }
 
 // เรียกฟังก์ชัน fetchInputs เมื่อโหลดหน้าเว็บ

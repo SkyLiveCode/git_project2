@@ -1,6 +1,13 @@
 // เชื่อมต่อกับเซิร์ฟเวอร์ Socket.IO
 const socket = io();
 
+// ฟังก์ชันสำหรับอัปเดตผลลัพธ์การคำนวณ
+function updateResults(data) {
+  document.getElementById('sumResult').innerText = data.sumResult; // แสดงผลลัพธ์การคำนวณผลรวม
+  document.getElementById('differenceResult').innerText = data.differenceResult; // แสดงผลลัพธ์การคำนวณผลต่าง
+  // <<<<<<<<<< เพิ่มรายการ... (result)
+}
+
 // ฟังก์ชันจัดการการส่งข้อมูลของฟอร์ม
 function calculate(event) {
   event.preventDefault(); // ป้องกันการส่งฟอร์มแบบปกติ
@@ -22,9 +29,7 @@ function calculate(event) {
   })
   .then(response => response.json()) // แปลงการตอบกลับเป็น JSON
   .then(data => {
-    document.getElementById('sumResult').innerText = data.sumResult; // แสดงผลลัพธ์การคำนวณผลรวม
-    document.getElementById('differenceResult').innerText = data.differenceResult; // แสดงผลลัพธ์การคำนวณผลต่าง
-    // <<<<<<<<<< เพิ่มรายการ... (result)
+    updateResults(data); // เรียกฟังก์ชันสำหรับอัปเดตผลลัพธ์การคำนวณ
   });
 }
 
@@ -42,7 +47,5 @@ document.getElementById('calcForm').addEventListener('input', () => {
 });
 
 socket.on('calculatedResult', (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
-  document.getElementById('sumResult').innerText = data.sumResult; // แสดงผลลัพธ์การคำนวณผลรวม
-  document.getElementById('differenceResult').innerText = data.differenceResult; // แสดงผลลัพธ์การคำนวณผลต่าง
-  // <<<<<<<<<< เพิ่มรายการ... (result)
+  updateResults(data); // เรียกฟังก์ชันสำหรับอัปเดตผลลัพธ์การคำนวณ
 });

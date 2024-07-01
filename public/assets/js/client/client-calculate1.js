@@ -61,23 +61,17 @@ function fetchInputs() {
 function sendInputs(inputs) {
   const socket = io(); // สร้างการเชื่อมต่อ Socket.IO
   socket.emit('calculate', inputs); // ส่งข้อมูล inputs ไปยังเซิร์ฟเวอร์เพื่อคำนวณ
-  socket.on('calculatedResult', (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
+  socket.on('calculatedResult', async (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
     document.getElementById('sumResult').textContent = data.sumResult;
     document.getElementById('differenceResult').textContent = data.differenceResult;
     
-    // แสดง/ซ่อนรูปภาพตามลายเซ็นต์ 3
-    const signature3 = document.getElementById('signature3').value.toLowerCase();
-    const signatureImage = document.getElementById('signatureImage');
-    if (signature3 === 'sky') {
-      signatureImage.src = '../../assets/img/signature/path_to_sky_image.jpg';
-      signatureImage.style.display = 'block';
-    } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
-      signatureImage.src = "../../assets/img/signature/signature3.png";
-      signatureImage.style.display = 'block';
-    } else {
-      signatureImage.style.display = 'none';
-    }
-
+    // ดึงข้อมูลผู้ใช้จากเซิร์ฟเวอร์
+    const response = await fetch('/api/users');
+    const userData = await response.json();
+    
+    // อัพเดทรูปภาพตามข้อมูลผู้ใช้
+    updateSignatureImage(userData.users);
+    
     // อัพเดทสถานะของ signature1, signature2 และ signature3
     updateSignatureStatus('signature1', 'bg_signatureStatus1');
     updateSignatureStatus('signature2', 'bg_signatureStatus2');

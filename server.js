@@ -20,6 +20,7 @@ const medicalEquipmentRoutes = require('./routes/medicalEquipmentRoutes'); // �
 const gateEquipmentRoutes = require('./routes/gateEquipmentRoutes'); // นำเข้าโมดูล gateEquipmentRoutes
 const pdfRoute = require('./routes/pdfRoute'); // นำเข้าโมดูล pdfRoute
 const QRLinearCodeRoute = require('./routes/QRLinearCodeRoute'); // นำเข้าโมดูล QRLinearCodeRoute
+const livereload = require('connect-livereload'); // นำเข้า connect-livereload
 
 const app = express();                 // สร้างแอปพลิเคชัน Express
 const server = http.createServer(app); // สร้างเซิร์ฟเวอร์ HTTP
@@ -40,6 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // กำหนด middleware สำหรับการ parse คุกกี้
 app.use(cookieParser());
+// ใช้ connect-livereload
+app.use(livereload()); 
 // ตั้งค่า session store
 const sessionStore = new MySQLStore({
   clearExpired: true, // ล้าง session ที่หมดอายุโดยอัตโนมัติ

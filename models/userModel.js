@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt'); // นำเข้าโมดูล bcrypt �
 // ฟังก์ชัน getUsers สำหรับดึงข้อมูลผู้ใช้ทั้งหมด
 exports.getUsers = async () => {
   try {
-    const query = 'SELECT name, picture_sign FROM users'; // คำสั่ง SQL สำหรับดึงข้อมูลผู้ใช้
+    const query = 'SELECT name, picture, picture_sign FROM users'; // คำสั่ง SQL สำหรับดึงข้อมูลผู้ใช้
     const [results] = await db.query(query); // รันคำสั่ง SQL
     return results; // ส่งผลลัพธ์ผู้ใช้ที่พบ
   } catch (err) {

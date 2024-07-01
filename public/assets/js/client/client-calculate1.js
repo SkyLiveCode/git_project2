@@ -2,7 +2,7 @@
 function updateCalculationInputs(inputs) {
   const inputIds = [
     'calinput5', 'calinput6', 'calinput7', 'calinput8', 
-    // <<<<<<<<<< เพิ่มรายการ... (result)
+    // <<<<<<<<<< เพิ่มรายการ... (result แสดงซ้ำ)
   ];
 
   inputIds.forEach(inputId => {
@@ -32,11 +32,13 @@ function fetchInputs() {
         });
 
         // ตั้งค่าปุ่มเลือกแบบตัวเลือกตามข้อมูลที่ได้รับ
-        for (let i = 1; i <= 18; i++) {
-          if (data.inputs[`radio${i}`]) {
-            document.querySelector(`input[name="radio${i}"][value="${data.inputs[`radio${i}`]}"]`).checked = true;
+        const radios = document.querySelectorAll('input[type="radio"]');
+        radios.forEach(radio => {
+          const name = radio.name;
+          if (data.inputs[name] && data.inputs[name] === radio.value) {
+            radio.checked = true;
           }
-        }
+        });
 
         // เรียกฟังก์ชันส่งข้อมูลเพื่อแสดงผลลัพธ์เบื้องต้น
         sendInputs(data.inputs);

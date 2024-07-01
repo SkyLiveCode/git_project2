@@ -5,7 +5,7 @@ const socket = io();
 function updateResults(data) {
   document.getElementById('sumResult').innerText = data.sumResult; // แสดงผลลัพธ์การคำนวณผลรวม
   document.getElementById('differenceResult').innerText = data.differenceResult; // แสดงผลลัพธ์การคำนวณผลต่าง
-  // <<<<<<<<<< เพิ่มรายการ... (result)
+  // <<<<<<<<<< เพิ่มรายการ... (result คำนวณ)
 }
 
 // ฟังก์ชันจัดการการส่งข้อมูลของฟอร์ม

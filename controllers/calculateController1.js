@@ -5,7 +5,7 @@ const { sum } = require('../utils/util');
 const calculateResults = (inputs) => {
     const sumResult = sum(Number(inputs.calinput1), Number(inputs.calinput2));
     const differenceResult = Number(inputs.calinput3) - Number(inputs.calinput4);
-    // <<<<<<<<<< เพิ่มรายการ... (result)
+    // <<<<<<<<<< เพิ่มรายการ... (result คำนวณ)
 
     return { sumResult, differenceResult };
 };

@@ -59,8 +59,8 @@ exports.findUserByName = async (name) => {
 exports.createUser = async (userData) => {
   try {
     const hash = await bcrypt.hash(userData.password, 10); // เข้ารหัสรหัสผ่านของผู้ใช้
-    const query = 'INSERT INTO users (name, email, password, picture_sign) VALUES (?, ?, ?, ?)'; // คำสั่ง SQL สำหรับเพิ่มผู้ใช้ใหม่
-    const [results] = await db.query(query, [userData.name, userData.email, hash, 'signature3.png']); // รันคำสั่ง SQL พร้อมตั้งค่า picture_sign เป็นค่าเริ่มต้น
+    const query = 'INSERT INTO users (name, email, password, picture, picture_sign) VALUES (?, ?, ?, ?, ?)'; // คำสั่ง SQL สำหรับเพิ่มผู้ใช้ใหม่
+    const [results] = await db.query(query, [userData.name, userData.email, hash, '1.png', 'signature3.png']); // รันคำสั่ง SQL พร้อมตั้งค่า picture และ picture_sign เป็นค่าเริ่มต้น
     return results.insertId; // ถ้าเพิ่มผู้ใช้สำเร็จ ส่ง ID ของผู้ใช้ใหม่กลับไป
   } catch (err) {
     console.error('Error in createUser:', err);

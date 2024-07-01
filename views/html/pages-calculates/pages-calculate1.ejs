@@ -447,13 +447,16 @@
                                   <!-- ช่องใส่แล้วห้ามแก้ไข -->
                                   <input type="text" value="<%= hospital[0].hospital_name %>" readonly/><br>
                                   <!-- ช่องใส่ลายเซ็นต์ -->
-                                  <input type="text" id="signature1" name="signature1" placeholder="Signature 1" />
-                                  <!-- แสดงลายเซ็นต์ -->
-                                  <span id="displaySignature1"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input -->
-                                  <!-- ปุ่มกดของของลายเซ็นต์ 1 -->
-                                  <button type="button" id="fillSignature1" style="background: none; border: none; padding: 0;">
-                                    <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 1" style="margin-top: -4px; height: 33px; width: auto;" class="timestamp__image">
-                                  </button>
+                                  <input type="hidden" id="signature1" name="signature1" placeholder="Signature 1" />
+                                  <!-- แสดงลายเซ็นต์และปุ่มในแถวเดียวกัน -->
+                                  <div style="display: flex; align-items: center;">
+                                    <!-- แสดงลายเซ็นต์ -->
+                                    <span id="displaySignature1"></span>
+                                    <!-- ปุ่มกดของของลายเซ็นต์ 1 -->
+                                    <button type="button" id="fillSignature1" style="background: none; border: none; padding: 0; margin-left: 5px;">
+                                      <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 1" style="height: 33px; width: auto;" class="timestamp__image">
+                                    </button>
+                                  </div>
                                   <!-- / หน้า A -->
                                   <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">Save changes</button>
@@ -499,13 +502,16 @@
                                   <h1>Difference Result: <span id="differenceResult"></span></h1> <!-- แสดงผลต่าง -->
                                   <!-- / result -->
                                   <!-- ช่องใส่ลายเซ็นต์ -->
-                                  <input type="text" id="signature2" name="signature2" placeholder="Signature 2" />
-                                  <!-- แสดงลายเซ็นต์ -->
-                                  <span id="displaySignature2"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input -->
-                                  <!-- ปุ่มกดของของลายเซ็นต์ 2 -->
-                                  <button type="button" id="fillSignature2" style="background: none; border: none; padding: 0;">
-                                    <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 2" style="margin-top: -4px; height: 33px; width: auto;" class="timestamp__image">
-                                  </button>
+                                  <input type="hidden" id="signature2" name="signature2" placeholder="Signature 2" />
+                                  <!-- แสดงลายเซ็นต์และปุ่มในแถวเดียวกัน -->
+                                  <div style="display: flex; align-items: center;">
+                                    <!-- แสดงลายเซ็นต์ -->
+                                    <span id="displaySignature2"></span>
+                                    <!-- ปุ่มกดของของลายเซ็นต์ 1 -->
+                                    <button type="button" id="fillSignature2" style="background: none; border: none; padding: 0; margin-left: 5px;">
+                                      <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 2" style="height: 33px; width: auto;" class="timestamp__image">
+                                    </button>
+                                  </div>
                                   <!-- / หน้า B -->
                                   <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">Save changes</button>
@@ -524,14 +530,20 @@
                               <div class="">
                                   <!-- หน้า C -->
                                   <!-- ช่องใส่ลายเซ็นต์ -->
-                                  <input type="text" id="signature3" name="signature3" placeholder="Signature 3" />
-                                  <!-- แสดงลายเซ็นต์ -->
-                                  <img id="signatureImage" src="" style="display:none; height: 65px; width: auto;" /> <!-- รูปภาพที่จะแสดงตามลายเซ็นต์ -->
-                                  <span id="displaySignature3"></span><br> <!-- แสดงค่าที่กรอกลงไปใน input --> 
-                                  <!-- ปุ่มกดของของลายเซ็นต์ 2 -->
-                                  <button type="button" id="fillSignature3" style="background: none; border: none; padding: 0;">
-                                    <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 3" style="margin-top: -4px; height: 33px; width: auto;" class="timestamp__image">
-                                  </button>                                  
+                                  <input type="hidden" id="signature3" name="signature3" placeholder="Signature 3" />
+                                  <!-- แสดงลายเซ็นต์และปุ่มในแถวเดียวกัน -->
+                                  <div style="display: flex; align-items: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center;">                                      
+                                      <!-- รูปภาพที่จะแสดงตามลายเซ็นต์ -->
+                                      <img id="signatureImage" src="" style="display:none; height: 65px; width: auto; margin-left: 5px;" />
+                                      <!-- แสดงลายเซ็นต์ -->
+                                      <span id="displaySignature3"></span>
+                                    </div>
+                                    <!-- ปุ่มกดของของลายเซ็นต์ 1 -->
+                                    <button type="button" id="fillSignature3" style="background: none; border: none; padding: 0; margin-left: 5px;">
+                                      <img src="../../assets/img/signature/signature-icon1.png" alt="Fill Signature 3" style="height: 33px; width: auto;" class="timestamp__image">
+                                    </button>
+                                  </div>                               
                                   <!-- / หน้า C -->
                                   <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">Save changes</button>

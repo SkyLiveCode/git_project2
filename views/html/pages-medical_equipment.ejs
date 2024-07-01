@@ -252,8 +252,12 @@
                                                 <input class="form-control" type="text" name="id_no" value="<%= equipment['ID. No.'] %>" style="display:none;">
                                             </td>
                                             <td>
-                                              <a href="/html/pages-gate_equipment_by_id/<%= equipment.id %>/<%= equipment.id_hospital %>/<%= equipment.id_categories %>" class="badge bg-label-warning me-1">Pending</a>
-                                            </td>
+                                              <% if (equipment.signaturesCompleted) { %>
+                                                <a href="/html/pages-gate_equipment_by_id/<%= equipment.id %>/<%= equipment.id_hospital %>/<%= equipment.id_categories %>" class="badge bg-label-success me-1">Completed</a>
+                                              <% } else { %>
+                                                <a href="/html/pages-gate_equipment_by_id/<%= equipment.id %>/<%= equipment.id_hospital %>/<%= equipment.id_categories %>" class="badge bg-label-warning me-1">Pending</a>
+                                              <% } %>
+                                            </td>                                                                                     
                                             <td>
                                               <div class="d-inline-block">
                                                 <a href="javascript:;" class="btn btn-sm btn-icon dropdown-toggle hide-arrow" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></a>

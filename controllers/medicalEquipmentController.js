@@ -11,9 +11,20 @@ exports.renderMedicalEquipmentInformation = async (req, res) => {
         const [categories] = await db.query('SELECT id, categorie_name, short_name FROM categories'); // ดึงข้อมูล categories
         const user = req.session.user;
 
-        // Format created_at dates
+        // Format created_at dates และเพิ่มฟิลด์ signaturesCompleted
         medicalEquipments = medicalEquipments.map(equipment => {
             equipment.created_at_formatted = format(new Date(equipment.created_at), 'd/M/yyyy HH:mm', { locale: th });
+
+            // ดึงและตรวจสอบ inputs จากคอลัมน์ inputs ใน equipment
+            let inputs = equipment.inputs || {};
+
+            // ตรวจสอบว่ามี signature1, signature2, และ signature3 หรือไม่
+            const signature1Exists = Boolean(inputs.signature1 && inputs.signature1.trim());
+            const signature2Exists = Boolean(inputs.signature2 && inputs.signature2.trim());
+            const signature3Exists = Boolean(inputs.signature3 && inputs.signature3.trim());
+
+            equipment.signaturesCompleted = signature1Exists && signature2Exists && signature3Exists;
+
             return equipment;
         });
 

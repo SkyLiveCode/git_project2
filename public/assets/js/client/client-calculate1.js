@@ -11,61 +11,11 @@ function fetchInputs() {
         });
 
         // ตั้งค่าปุ่มเลือกแบบตัวเลือกตามข้อมูลที่ได้รับ
-        if (data.inputs.radio1) {
-          document.querySelector(`input[name="radio1"][value="${data.inputs.radio1}"]`).checked = true;
+        for (let i = 1; i <= 18; i++) {
+          if (data.inputs[`radio${i}`]) {
+            document.querySelector(`input[name="radio${i}"][value="${data.inputs[`radio${i}`]}"]`).checked = true;
+          }
         }
-        if (data.inputs.radio2) {
-          document.querySelector(`input[name="radio2"][value="${data.inputs.radio2}"]`).checked = true;
-        }
-        if (data.inputs.radio3) {
-          document.querySelector(`input[name="radio3"][value="${data.inputs.radio3}"]`).checked = true;
-        }
-        if (data.inputs.radio4) {
-          document.querySelector(`input[name="radio4"][value="${data.inputs.radio4}"]`).checked = true;
-        }
-        if (data.inputs.radio5) {
-          document.querySelector(`input[name="radio5"][value="${data.inputs.radio5}"]`).checked = true;
-        }
-        if (data.inputs.radio6) {
-          document.querySelector(`input[name="radio6"][value="${data.inputs.radio6}"]`).checked = true;
-        }
-        if (data.inputs.radio7) {
-          document.querySelector(`input[name="radio7"][value="${data.inputs.radio7}"]`).checked = true;
-        }
-        if (data.inputs.radio8) {
-          document.querySelector(`input[name="radio8"][value="${data.inputs.radio8}"]`).checked = true;
-        }
-        if (data.inputs.radio9) {
-          document.querySelector(`input[name="radio9"][value="${data.inputs.radio9}"]`).checked = true;
-        }
-        if (data.inputs.radio10) {
-          document.querySelector(`input[name="radio10"][value="${data.inputs.radio10}"]`).checked = true;
-        }
-        if (data.inputs.radio11) {
-          document.querySelector(`input[name="radio11"][value="${data.inputs.radio11}"]`).checked = true;
-        }
-        if (data.inputs.radio12) {
-          document.querySelector(`input[name="radio12"][value="${data.inputs.radio12}"]`).checked = true;
-        }
-        if (data.inputs.radio13) {
-          document.querySelector(`input[name="radio13"][value="${data.inputs.radio13}"]`).checked = true;
-        }
-        if (data.inputs.radio14) {
-          document.querySelector(`input[name="radio14"][value="${data.inputs.radio14}"]`).checked = true;
-        }
-        if (data.inputs.radio15) {
-          document.querySelector(`input[name="radio15"][value="${data.inputs.radio15}"]`).checked = true;
-        }
-        if (data.inputs.radio16) {
-          document.querySelector(`input[name="radio16"][value="${data.inputs.radio16}"]`).checked = true;
-        }
-        if (data.inputs.radio17) {
-          document.querySelector(`input[name="radio17"][value="${data.inputs.radio17}"]`).checked = true;
-        }
-        if (data.inputs.radio18) {
-          document.querySelector(`input[name="radio18"][value="${data.inputs.radio18}"]`).checked = true;
-        }        
-        // <<<<<<<<<< เพิ่มรายการ... (input)
 
         // เรียกฟังก์ชันส่งข้อมูลเพื่อแสดงผลลัพธ์เบื้องต้น
         sendInputs(data.inputs);
@@ -166,14 +116,6 @@ function updateCalInputDisplay(inputId) {
 // เรียกฟังก์ชัน fetchInputs เมื่อโหลดหน้าเว็บ
 document.addEventListener('DOMContentLoaded', fetchInputs); // ดึงข้อมูล inputs เมื่อโหลดหน้าเว็บ
 
-// อัพเดทการแสดงผลของ calculation inputs เมื่อโหลดหน้าเว็บ
-document.addEventListener('DOMContentLoaded', function() {
-  updateCalInputDisplay('calinput5');
-  updateCalInputDisplay('calinput6');
-  updateCalInputDisplay('calinput7');
-  updateCalInputDisplay('calinput8');
-});
-
 // Event listeners สำหรับปุ่ม fill signatures และอัพเดทการแสดงผล
 document.getElementById('fillSignature1').addEventListener('click', function() {
   const signature1Input = document.getElementById('signature1');
@@ -219,6 +161,7 @@ document.getElementById('signature2').addEventListener('input', function() {
 document.getElementById('signature3').addEventListener('input', function() {
   document.getElementById('displaySignature3').textContent = this.value;
   updateSignatureStatus('signature3', 'bg_signatureStatus3');
+  fetchUsers(); // ดึงข้อมูลผู้ใช้ใหม่เมื่อมีการเปลี่ยนแปลงลายเซ็นต์ 3
 });
 
 // ส่งข้อมูลเมื่อฟอร์มถูก submit
@@ -271,10 +214,3 @@ function updateSignatureImage(users) {
 
 // เรียกฟังก์ชัน fetchUsers เมื่อโหลดหน้าเว็บ
 document.addEventListener('DOMContentLoaded', fetchUsers);
-
-// Event listener เพื่อตรวจสอบลายเซ็นต์ 3 แบบเรียลไทม์และอัพเดทรูปภาพ
-document.getElementById('signature3').addEventListener('input', function() {
-  fetchUsers(); // ดึงข้อมูลผู้ใช้ใหม่เมื่อมีการเปลี่ยนแปลงลายเซ็นต์ 3
-  updateSignatureStatus('signature3', 'bg_signatureStatus3'); // อัพเดทสถานะของ signature3
-});
-

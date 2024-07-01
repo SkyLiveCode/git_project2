@@ -112,20 +112,6 @@ function sendInputs(inputs) {
   });
 }
 
-// ฟังก์ชันสำหรับอัพเดทสถานะของ signature
-function updateSignatureStatus(inputId, statusId) {
-  const inputElement = document.getElementById(inputId);
-  const statusElement = document.getElementById(statusId);
-
-  if (inputElement.value) {
-    statusElement.className = "mt-2 badge rounded-pill bg-success";
-    statusElement.textContent = "Completed";
-  } else {
-    statusElement.className = "mt-2 badge rounded-pill bg-warning";
-    statusElement.textContent = "Pending";
-  }
-}
-
 // ฟังก์ชันสำหรับดึงข้อมูล inputs จากฟอร์ม
 function getInputs() {
   const inputs = {};

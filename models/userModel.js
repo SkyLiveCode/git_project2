@@ -2,10 +2,10 @@
 const db = require('../config/database'); // นำเข้าโมดูลการเชื่อมต่อฐานข้อมูล
 const bcrypt = require('bcrypt'); // นำเข้าโมดูล bcrypt สำหรับการเข้ารหัสรหัสผ่าน
 
-// ฟังก์ชัน getUsers สำหรับดึงข้อมูลผู้ใช้ทั้งหมด
+// ฟังก์ชัน getUsers สำหรับดึงข้อมูลผู้ใช้ทั้งหมด (ไม่รวม password)
 exports.getUsers = async () => {
   try {
-    const query = 'SELECT name, picture, picture_sign FROM users'; // คำสั่ง SQL สำหรับดึงข้อมูลผู้ใช้
+    const query = 'SELECT id, name, email, picture, picture_sign, verify, accounts, created_at FROM users'; // คำสั่ง SQL สำหรับดึงข้อมูลผู้ใช้ (ไม่รวม password)
     const [results] = await db.query(query); // รันคำสั่ง SQL
     return results; // ส่งผลลัพธ์ผู้ใช้ที่พบ
   } catch (err) {
@@ -14,16 +14,16 @@ exports.getUsers = async () => {
   }
 };
 
-// ฟังก์ชัน findUser สำหรับค้นหาผู้ใช้ในฐานข้อมูล
+// ฟังก์ชัน findUser สำหรับค้นหาผู้ใช้ในฐานข้อมูลโดยอีเมลและรหัสผ่าน
 exports.findUser = async (email, password) => {
   try {
-    const query = 'SELECT * FROM users WHERE email = ?'; // คำสั่ง SQL สำหรับค้นหาผู้ใช้โดยอีเมล
-    const [results] = await db.query(query, [email]); // รันคำสั่ง SQL
-    if (results.length === 0) return null; // ถ้าไม่พบผู้ใช้ ส่ง null กลับไป
+    const user = await this.findUserByEmailWithPassword(email);
+    if (!user) return null;
 
-    const user = results[0]; // เก็บผลลัพธ์ผู้ใช้ที่พบ
-    const isMatch = await bcrypt.compare(password, user.password); // เปรียบเทียบรหัสผ่านที่กรอกกับรหัสผ่านที่เข้ารหัสในฐานข้อมูล
+    const isMatch = await bcrypt.compare(password, user.password); // เปรียบเทียบรหัสผ่าน
     if (!isMatch) return null; // ถ้ารหัสผ่านไม่ตรงกัน ส่ง null กลับไป
+
+    delete user.password; // ลบรหัสผ่านออกจาก object ก่อนส่งกลับ
     return user; // ถ้ารหัสผ่านตรงกัน ส่งข้อมูลผู้ใช้กลับไป
   } catch (err) {
     console.error('Error in findUser:', err);
@@ -31,10 +31,10 @@ exports.findUser = async (email, password) => {
   }
 };
 
-// ฟังก์ชัน findUserByEmail สำหรับค้นหาผู้ใช้โดยอีเมล
+// ฟังก์ชัน findUserByEmail สำหรับค้นหาผู้ใช้โดยอีเมล (ไม่รวม password)
 exports.findUserByEmail = async (email) => {
   try {
-    const query = 'SELECT * FROM users WHERE email = ?'; // คำสั่ง SQL สำหรับค้นหาผู้ใช้โดยอีเมล
+    const query = 'SELECT id, name, email, picture, picture_sign, verify, accounts, created_at FROM users WHERE email = ?'; // คำสั่ง SQL สำหรับค้นหาผู้ใช้โดยอีเมล (ไม่รวม password)
     const [results] = await db.query(query, [email]); // รันคำสั่ง SQL
     return results[0]; // ส่งผลลัพธ์ผู้ใช้ที่พบ (หรือ undefined ถ้าไม่พบผู้ใช้)
   } catch (err) {
@@ -43,10 +43,22 @@ exports.findUserByEmail = async (email) => {
   }
 };
 
-// ฟังก์ชัน findUserByName สำหรับค้นหาผู้ใช้โดยชื่อ
+// ฟังก์ชัน findUserByEmailWithPassword สำหรับค้นหาผู้ใช้โดยอีเมล (รวม password)
+exports.findUserByEmailWithPassword = async (email) => {
+  try {
+    const query = 'SELECT * FROM users WHERE email = ?'; // คำสั่ง SQL สำหรับค้นหาผู้ใช้โดยอีเมล (รวม password)
+    const [results] = await db.query(query, [email]); // รันคำสั่ง SQL
+    return results[0]; // ส่งผลลัพธ์ผู้ใช้ที่พบ (หรือ undefined ถ้าไม่พบผู้ใช้)
+  } catch (err) {
+    console.error('Error in findUserByEmailWithPassword:', err);
+    throw err;
+  }
+};
+
+// ฟังก์ชัน findUserByName สำหรับค้นหาผู้ใช้โดยชื่อ (ไม่รวม password)
 exports.findUserByName = async (name) => {
   try {
-    const query = 'SELECT * FROM users WHERE name = ?'; // คำสั่ง SQL สำหรับค้นหาผู้ใช้โดยชื่อ
+    const query = 'SELECT id, name, email, picture, picture_sign, verify, accounts, created_at FROM users WHERE name = ?'; // คำสั่ง SQL สำหรับค้นหาผู้ใช้โดยชื่อ (ไม่รวม password)
     const [results] = await db.query(query, [name]); // รันคำสั่ง SQL
     return results[0]; // ส่งผลลัพธ์ผู้ใช้ที่พบ (หรือ undefined ถ้าไม่พบผู้ใช้)
   } catch (err) {

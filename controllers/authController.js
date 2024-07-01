@@ -22,7 +22,7 @@ exports.showHomePage = (req, res) => {
 exports.login = async (req, res) => {
   const { email, password } = req.body; // รับค่า email และ password จาก request body
   try {
-    const user = await userModel.findUserByEmail(email); // ค้นหาผู้ใช้โดยอีเมล
+    const user = await userModel.findUserByEmailWithPassword(email); // ค้นหาผู้ใช้โดยอีเมลพร้อมรหัสผ่าน
     if (!user) { // ถ้าไม่พบผู้ใช้
       console.log('Invalid email');
       return res.render('login', { emailError: 'Invalid email' }); // ส่งค่าข้อความแจ้งเตือนกลับไปที่เทมเพลต
@@ -32,6 +32,7 @@ exports.login = async (req, res) => {
       console.log('Invalid password');
       return res.render('login', { passwordError: 'Invalid password' }); // ส่งค่าข้อความแจ้งเตือนกลับไปที่เทมเพลต
     }
+    delete user.password; // ลบรหัสผ่านออกจาก object ก่อนเก็บใน session
     req.session.user = user; // เก็บข้อมูลผู้ใช้ใน session
     res.cookie('user', user, { maxAge: 7 * 24 * 60 * 60 * 1000 }); // ตั้งค่า cookie สำหรับ 7 วัน
     res.redirect('/'); // ถ้าเข้าสู่ระบบสำเร็จ เปลี่ยนเส้นทางไปที่ '/'

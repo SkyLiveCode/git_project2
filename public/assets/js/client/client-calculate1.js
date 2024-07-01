@@ -10,6 +10,63 @@ function fetchInputs() {
           }
         });
 
+        // ตั้งค่าปุ่มเลือกแบบตัวเลือกตามข้อมูลที่ได้รับ
+        if (data.inputs.radio1) {
+          document.querySelector(`input[name="radio1"][value="${data.inputs.radio1}"]`).checked = true;
+        }
+        if (data.inputs.radio2) {
+          document.querySelector(`input[name="radio2"][value="${data.inputs.radio2}"]`).checked = true;
+        }
+        if (data.inputs.radio3) {
+          document.querySelector(`input[name="radio3"][value="${data.inputs.radio3}"]`).checked = true;
+        }
+        if (data.inputs.radio4) {
+          document.querySelector(`input[name="radio4"][value="${data.inputs.radio4}"]`).checked = true;
+        }
+        if (data.inputs.radio5) {
+          document.querySelector(`input[name="radio5"][value="${data.inputs.radio5}"]`).checked = true;
+        }
+        if (data.inputs.radio6) {
+          document.querySelector(`input[name="radio6"][value="${data.inputs.radio6}"]`).checked = true;
+        }
+        if (data.inputs.radio7) {
+          document.querySelector(`input[name="radio7"][value="${data.inputs.radio7}"]`).checked = true;
+        }
+        if (data.inputs.radio8) {
+          document.querySelector(`input[name="radio8"][value="${data.inputs.radio8}"]`).checked = true;
+        }
+        if (data.inputs.radio9) {
+          document.querySelector(`input[name="radio9"][value="${data.inputs.radio9}"]`).checked = true;
+        }
+        if (data.inputs.radio10) {
+          document.querySelector(`input[name="radio10"][value="${data.inputs.radio10}"]`).checked = true;
+        }
+        if (data.inputs.radio11) {
+          document.querySelector(`input[name="radio11"][value="${data.inputs.radio11}"]`).checked = true;
+        }
+        if (data.inputs.radio12) {
+          document.querySelector(`input[name="radio12"][value="${data.inputs.radio12}"]`).checked = true;
+        }
+        if (data.inputs.radio13) {
+          document.querySelector(`input[name="radio13"][value="${data.inputs.radio13}"]`).checked = true;
+        }
+        if (data.inputs.radio14) {
+          document.querySelector(`input[name="radio14"][value="${data.inputs.radio14}"]`).checked = true;
+        }
+        if (data.inputs.radio15) {
+          document.querySelector(`input[name="radio15"][value="${data.inputs.radio15}"]`).checked = true;
+        }
+        if (data.inputs.radio16) {
+          document.querySelector(`input[name="radio16"][value="${data.inputs.radio16}"]`).checked = true;
+        }
+        if (data.inputs.radio17) {
+          document.querySelector(`input[name="radio17"][value="${data.inputs.radio17}"]`).checked = true;
+        }
+        if (data.inputs.radio18) {
+          document.querySelector(`input[name="radio18"][value="${data.inputs.radio18}"]`).checked = true;
+        }        
+        // <<<<<<<<<< เพิ่มรายการ... (input)
+
         // เรียกฟังก์ชันส่งข้อมูลเพื่อแสดงผลลัพธ์เบื้องต้น
         sendInputs(data.inputs);
 
@@ -44,7 +101,7 @@ function sendInputs(inputs) {
     } else {
       signatureImage.style.display = 'none';
     }
-    
+
     // อัพเดทสถานะของ signature1, signature2 และ signature3
     updateSignatureStatus('signature1', 'bg_signatureStatus1');
     updateSignatureStatus('signature2', 'bg_signatureStatus2');
@@ -73,7 +130,13 @@ function updateSignatureStatus(inputId, statusId) {
 function getInputs() {
   const inputs = {};
   document.querySelectorAll('#calcForm input, #calcForm textarea').forEach(input => {
-    inputs[input.name] = input.value;
+      if (input.type === 'radio') {
+          if (input.checked) {
+              inputs[input.name] = input.value;
+          }
+      } else {
+          inputs[input.name] = input.value;
+      }
   });
   return inputs;
 }

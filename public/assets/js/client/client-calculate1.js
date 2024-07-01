@@ -64,6 +64,7 @@ function sendInputs(inputs) {
   socket.on('calculatedResult', async (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
     document.getElementById('sumResult').textContent = data.sumResult;
     document.getElementById('differenceResult').textContent = data.differenceResult;
+    // <<<<<<<<<< เพิ่มรายการ... (result คำนวณ)
     
     // ดึงข้อมูลผู้ใช้จากเซิร์ฟเวอร์
     const response = await fetch('/api/users');

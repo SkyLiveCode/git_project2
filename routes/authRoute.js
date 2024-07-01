@@ -9,12 +9,12 @@ const authController = require('../controllers/authController');
 router.post('/login', authController.login);
 router.get('/login', (req, res) => {
     res.render('login');
-  });
+});
 // กำหนดเส้นทาง POST สำหรับการสมัครสมาชิก และเรียกใช้ฟังก์ชัน register จาก authController
 router.post('/register', authController.register);
 router.get('/register', (req, res) => {
     res.render('register');
-  });
+});
 // กำหนดเส้นทาง POST สำหรับการออกจากระบบ และเรียกใช้ฟังก์ชัน logout จาก authController
 router.post('/api/logout', authController.logout);
 // กำหนดเส้นทาง reset-password
@@ -22,6 +22,9 @@ router.get('/reset-password-direct', (req, res) => {
   res.render('resetPasswordDirect');
 });
 router.post('/reset-password-direct', authController.resetPasswordDirect);
+
+// เพิ่มเส้นทางสำหรับดึงข้อมูลผู้ใช้
+router.get('/api/users', authController.getUsers);
 
 // ส่งออกโมดูล router เพื่อให้สามารถใช้งานในไฟล์อื่นได้
 module.exports = router;

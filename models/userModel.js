@@ -2,6 +2,18 @@
 const db = require('../config/database'); // นำเข้าโมดูลการเชื่อมต่อฐานข้อมูล
 const bcrypt = require('bcrypt'); // นำเข้าโมดูล bcrypt สำหรับการเข้ารหัสรหัสผ่าน
 
+// ฟังก์ชัน getUsers สำหรับดึงข้อมูลผู้ใช้ทั้งหมด
+exports.getUsers = async () => {
+  try {
+    const query = 'SELECT name, picture_sign FROM users'; // คำสั่ง SQL สำหรับดึงข้อมูลผู้ใช้
+    const [results] = await db.query(query); // รันคำสั่ง SQL
+    return results; // ส่งผลลัพธ์ผู้ใช้ที่พบ
+  } catch (err) {
+    console.error('Error in getUsers:', err);
+    throw err;
+  }
+};
+
 // ฟังก์ชัน findUser สำหรับค้นหาผู้ใช้ในฐานข้อมูล
 exports.findUser = async (email, password) => {
   try {
@@ -47,8 +59,8 @@ exports.findUserByName = async (name) => {
 exports.createUser = async (userData) => {
   try {
     const hash = await bcrypt.hash(userData.password, 10); // เข้ารหัสรหัสผ่านของผู้ใช้
-    const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)'; // คำสั่ง SQL สำหรับเพิ่มผู้ใช้ใหม่
-    const [results] = await db.query(query, [userData.name, userData.email, hash]); // รันคำสั่ง SQL
+    const query = 'INSERT INTO users (name, email, password, picture_sign) VALUES (?, ?, ?, ?)'; // คำสั่ง SQL สำหรับเพิ่มผู้ใช้ใหม่
+    const [results] = await db.query(query, [userData.name, userData.email, hash, 'signature3.png']); // รันคำสั่ง SQL พร้อมตั้งค่า picture_sign เป็นค่าเริ่มต้น
     return results.insertId; // ถ้าเพิ่มผู้ใช้สำเร็จ ส่ง ID ของผู้ใช้ใหม่กลับไป
   } catch (err) {
     console.error('Error in createUser:', err);

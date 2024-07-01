@@ -2,6 +2,16 @@
 const userModel = require('../models/userModel');
 const bcrypt = require('bcrypt');
 
+// ฟังก์ชันดึงข้อมูลผู้ใช้
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await userModel.getUsers(); // ดึงข้อมูลผู้ใช้จากฐานข้อมูล
+    res.json({ users }); // ส่งข้อมูลผู้ใช้กลับในรูปแบบ JSON
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
+};
+
 // ฟังก์ชันแสดงหน้าแรก
 exports.showHomePage = (req, res) => {
   const user = req.session.user;

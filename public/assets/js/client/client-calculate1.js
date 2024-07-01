@@ -75,8 +75,14 @@ function fetchInputs() {
         updateSignatureStatus('signature2', 'bg_signatureStatus2');
         updateSignatureStatus('signature3', 'bg_signatureStatus3');
 
-        // Update display spans with initial values
+        // อัพเดทการแสดงผลของ spans ด้วยค่าเริ่มต้น
         updateDisplaySpans();
+
+        // อัพเดทการแสดงผลของ calculation inputs ด้วยค่าเริ่มต้น
+        updateCalInputDisplay('calinput5');
+        updateCalInputDisplay('calinput6');
+        updateCalInputDisplay('calinput7');
+        updateCalInputDisplay('calinput8');
       }
     });
 }
@@ -107,9 +113,23 @@ function sendInputs(inputs) {
     updateSignatureStatus('signature2', 'bg_signatureStatus2');
     updateSignatureStatus('signature3', 'bg_signatureStatus3');
     
-    // Update display spans with received values
+    // อัพเดทการแสดงผลของ spans ด้วยค่าที่ได้รับ
     updateDisplaySpans();
   });
+}
+
+// ฟังก์ชันสำหรับอัพเดทสถานะของ signature
+function updateSignatureStatus(inputId, statusId) {
+  const inputElement = document.getElementById(inputId);
+  const statusElement = document.getElementById(statusId);
+
+  if (inputElement.value) {
+    statusElement.className = "mt-2 badge rounded-pill bg-success";
+    statusElement.textContent = "Completed";
+  } else {
+    statusElement.className = "mt-2 badge rounded-pill bg-warning";
+    statusElement.textContent = "Pending";
+  }
 }
 
 // ฟังก์ชันสำหรับดึงข้อมูล inputs จากฟอร์ม
@@ -134,10 +154,27 @@ function updateDisplaySpans() {
   document.getElementById('displaySignature3').textContent = document.getElementById('signature3').value;
 }
 
+// ฟังก์ชันเพื่ออัพเดทการแสดงผลของ calculation inputs
+function updateCalInputDisplay(inputId) {
+  const inputValue = document.getElementById(inputId).value;
+  const displayElement = document.getElementById(`display${inputId}`);
+  if (displayElement) {
+      displayElement.textContent = inputValue;
+  }
+}
+
 // เรียกฟังก์ชัน fetchInputs เมื่อโหลดหน้าเว็บ
 document.addEventListener('DOMContentLoaded', fetchInputs); // ดึงข้อมูล inputs เมื่อโหลดหน้าเว็บ
 
-// Event listeners for buttons to fill signatures and update displays
+// อัพเดทการแสดงผลของ calculation inputs เมื่อโหลดหน้าเว็บ
+document.addEventListener('DOMContentLoaded', function() {
+  updateCalInputDisplay('calinput5');
+  updateCalInputDisplay('calinput6');
+  updateCalInputDisplay('calinput7');
+  updateCalInputDisplay('calinput8');
+});
+
+// Event listeners สำหรับปุ่ม fill signatures และอัพเดทการแสดงผล
 document.getElementById('fillSignature1').addEventListener('click', function() {
   const signature1Input = document.getElementById('signature1');
   if (!signature1Input.value) {
@@ -168,7 +205,7 @@ document.getElementById('fillSignature3').addEventListener('click', function() {
   updateSignatureStatus('signature3', 'bg_signatureStatus3'); // อัพเดทสถานะของ signature3
 });
 
-// Add input event listeners to update the display spans in real-time
+// Event listeners เพื่ออัพเดทการแสดงผลของ spans แบบเรียลไทม์และสถานะของ signatures
 document.getElementById('signature1').addEventListener('input', function() {
   document.getElementById('displaySignature1').textContent = this.value;
   updateSignatureStatus('signature1', 'bg_signatureStatus1');
@@ -183,8 +220,6 @@ document.getElementById('signature3').addEventListener('input', function() {
   document.getElementById('displaySignature3').textContent = this.value;
   updateSignatureStatus('signature3', 'bg_signatureStatus3');
 });
-
-
 
 // ส่งข้อมูลเมื่อฟอร์มถูก submit
 document.getElementById('calcForm').addEventListener('submit', function(event) {
@@ -220,48 +255,4 @@ document.getElementById('signature3').addEventListener('input', function() {
     signatureImage.style.display = 'none';
   }
   updateSignatureStatus('signature3', 'bg_signatureStatus3'); // อัพเดทสถานะของ signature3
-});
-
-// ฟังก์ชันสำหรับอัพเดทสถานะของ signature
-function updateSignatureStatus(inputId, statusId) {
-  const inputElement = document.getElementById(inputId);
-  const statusElement = document.getElementById(statusId);
-
-  if (inputElement.value) {
-    statusElement.className = "mt-2 badge rounded-pill bg-success";
-    statusElement.textContent = "Completed";
-  } else {
-    statusElement.className = "mt-2 badge rounded-pill bg-warning";
-    statusElement.textContent = "Pending";
-  }
-}
-
-// เพิ่ม event listener สำหรับตรวจสอบการเปลี่ยนแปลงของ signature1, signature2 และ signature3
-document.getElementById('signature1').addEventListener('input', function() {
-  updateSignatureStatus('signature1', 'bg_signatureStatus1');
-});
-
-document.getElementById('signature2').addEventListener('input', function() {
-  updateSignatureStatus('signature2', 'bg_signatureStatus2');
-});
-
-document.getElementById('signature3').addEventListener('input', function() {
-  updateSignatureStatus('signature3', 'bg_signatureStatus3');
-});
-
-// Function to update the display for calculation inputs
-function updateCalInputDisplay(inputId) {
-  const inputValue = document.getElementById(inputId).value;
-  const displayElement = document.getElementById(`display${inputId}`);
-  if (displayElement) {
-      displayElement.textContent = inputValue;
-  }
-}
-
-// Add initial display elements for these inputs in the HTML
-document.addEventListener('DOMContentLoaded', function() {
-  updateCalInputDisplay('calinput5');
-  updateCalInputDisplay('calinput6');
-  updateCalInputDisplay('calinput7');
-  updateCalInputDisplay('calinput8');
 });

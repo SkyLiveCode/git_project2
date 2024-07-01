@@ -13,7 +13,10 @@ exports.showCalculatePage = async (req, res) => {
         // ดึงข้อมูล hospital โดยใช้ id_hospital ที่ได้จาก equipment
         const [hospital] = await db.query('SELECT * FROM hospital WHERE id = ?', [id_hospital]);
 
-        res.render('html/pages-calculates/pages-calculate1', { equipment_id, id_hospital, id_categories, user, equipment, hospital });
+        // ดึงข้อมูล input
+        const [inputs] = await db.query('SELECT inputs FROM equipment WHERE id = ?', [equipment_id]);
+
+        res.render('html/pages-calculates/pages-calculate1', { equipment_id, id_hospital, id_categories, user, equipment, hospital, inputs: inputs.inputs });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');

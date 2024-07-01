@@ -18,24 +18,52 @@ function fetchInputs() {
           document.querySelector(`input[name="radio2"][value="${data.inputs.radio2}"]`).checked = true;
         }
 
-        // เรียกฟังก์ชันส่งข้อมูลเพื่อแสดงผลลัพธ์เบื้องต้น
-        sendInputs(data.inputs);
-
-        // อัพเดทสถานะของ signature1, signature2 และ signature3
+        // อัพเดตสถานะของ signatures และการแสดงผลของ spans
         updateSignatureStatus('signature1', 'bg_signatureStatus1');
         updateSignatureStatus('signature2', 'bg_signatureStatus2');
         updateSignatureStatus('signature3', 'bg_signatureStatus3');
-
-        // Update display spans with initial values
         updateDisplaySpans();
+
+        // แสดง/ซ่อนรูปภาพตามลายเซ็นต์ 3
+        const signature3 = document.getElementById('signature3').value.toLowerCase();
+        const signatureImage = document.getElementById('signatureImage');
+        if (signature3 === 'sky') {
+          signatureImage.src = '../../assets/img/signature/path_to_sky_image.jpg';
+          signatureImage.style.display = 'block';
+        } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
+          signatureImage.src = "../../assets/img/signature/signature3.png";
+          signatureImage.style.display = 'block';
+        } else {
+          signatureImage.style.display = 'none';
+        }
+
+        // คำนวณผลลัพธ์และแสดงผล
+        const sumResult = sum(Number(data.inputs.calinput1), Number(data.inputs.calinput2));
+        const differenceResult = Number(data.inputs.calinput3) - Number(data.inputs.calinput4);
+
+        document.getElementById('sumResult').textContent = sumResult;
+        document.getElementById('differenceResult').textContent = differenceResult;
       }
     });
 }
 
+// ฟังก์ชันคำนวณผลรวม
+function sum(a, b) {
+  return a + b;
+}
+
 // ฟังก์ชันส่งข้อมูล inputs ไปยังเซิร์ฟเวอร์
 function sendInputs(inputs) {
+  const filteredInputs = { ...inputs };
+  delete filteredInputs.infoinput1;
+  delete filteredInputs.infoinput2;
+  delete filteredInputs.infoinput3;
+  delete filteredInputs.infoinput4;
+  delete filteredInputs.radio1;
+  delete filteredInputs.radio2;
+
   const socket = io(); // สร้างการเชื่อมต่อ Socket.IO
-  socket.emit('calculate', inputs); // ส่งข้อมูล inputs ไปยังเซิร์ฟเวอร์เพื่อคำนวณ
+  socket.emit('calculate', filteredInputs); // ส่งข้อมูล inputs ไปยังเซิร์ฟเวอร์เพื่อคำนวณ
   socket.on('calculatedResult', (data) => { // รับผลลัพธ์ที่คำนวณแล้วจากเซิร์ฟเวอร์
     document.getElementById('sumResult').textContent = data.sumResult;
     document.getElementById('differenceResult').textContent = data.differenceResult;
@@ -53,26 +81,7 @@ function sendInputs(inputs) {
       signatureImage.style.display = 'none';
     }
 
-    // ตั้งค่าปุ่มเลือกแบบตัวเลือก
-    document.getElementById('radio1Option1').checked = data.radio1 === 'option1';
-    document.getElementById('radio1Option2').checked = data.radio1 === 'option2';
-    document.getElementById('radio1Option3').checked = data.radio1 === 'option3';
-    document.getElementById('radio2Option1').checked = data.radio2 === 'option1';
-    document.getElementById('radio2Option2').checked = data.radio2 === 'option2';
-    document.getElementById('radio2Option3').checked = data.radio2 === 'option3';
-    document.getElementById('infoinput1').value = data.infoinput1 || '';
-    document.getElementById('infoinput2').value = data.infoinput2 || '';
-    document.getElementById('infoinput3').value = data.infoinput3 || '';
-    document.getElementById('infoinput4').value = data.infoinput4 || '';
-    // <<<<<<<<<< เพิ่มรายการ... (input)
-
-    // อัพเดทสถานะของ signature1, signature2 และ signature3
-    updateSignatureStatus('signature1', 'bg_signatureStatus1');
-    updateSignatureStatus('signature2', 'bg_signatureStatus2');
-    updateSignatureStatus('signature3', 'bg_signatureStatus3');
-    
-    // Update display spans with received values
-    updateDisplaySpans();
+    // ไม่ต้องอัพเดต radio buttons และ specific inputs ที่นี่
   });
 }
 
@@ -225,7 +234,7 @@ document.getElementById('signature3').addEventListener('input', function() {
     signatureImage.src = '../../assets/img/signature/path_to_sky_image.jpg';
     signatureImage.style.display = 'block';
   } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
-    signatureImage.src = '../../assets/img/signature/signature3.png';
+    signatureImage.src = "../../assets/img/signature/signature3.png";
     signatureImage.style.display = 'block';
   } else {
     signatureImage.style.display = 'none';

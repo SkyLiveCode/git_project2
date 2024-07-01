@@ -1,5 +1,3 @@
-// calculateRoute.js
-
 const express = require('express');
 const router = express.Router();
 const calculateController1 = require('../controllers/calculateController1');

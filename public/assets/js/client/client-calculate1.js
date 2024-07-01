@@ -198,14 +198,7 @@ document.getElementById('signature3').addEventListener('input', function() {
   updateSignatureStatus('signature3', 'bg_signatureStatus3');
 });
 
-// ฟังก์ชันสำหรับดึงข้อมูล inputs จากฟอร์ม
-function getInputs() {
-  const inputs = {};
-  document.querySelectorAll('#calcForm input, #calcForm textarea').forEach(input => {
-    inputs[input.name] = input.value;
-  });
-  return inputs;
-}
+
 
 // ส่งข้อมูลเมื่อฟอร์มถูก submit
 document.getElementById('calcForm').addEventListener('submit', function(event) {

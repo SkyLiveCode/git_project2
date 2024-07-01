@@ -477,10 +477,10 @@
                                   <input type="text" id="calinput2" name="calinput2" placeholder="Calculation Input 2" /><br> 
                                   <input type="text" id="calinput3" name="calinput3" placeholder="Calculation Input 3" />
                                   <input type="text" id="calinput4" name="calinput4" placeholder="Calculation Input 4" /><br>
-                                  <input type="text" id="calinput5" name="calinput5" placeholder="Calculation Input 5" />
-                                  <input type="text" id="calinput6" name="calinput6" placeholder="Calculation Input 6" /><br> 
-                                  <input type="text" id="calinput7" name="calinput7" placeholder="Calculation Input 7" />
-                                  <input type="text" id="calinput8" name="calinput8" placeholder="Calculation Input 8" /><br>
+                                  <input type="text" id="calinput5" name="calinput5" placeholder="Calculation Input 5" oninput="updateCalInputDisplay('calinput5')" />
+                                  <input type="text" id="calinput6" name="calinput6" placeholder="Calculation Input 6" oninput="updateCalInputDisplay('calinput6')" /><br>
+                                  <input type="text" id="calinput7" name="calinput7" placeholder="Calculation Input 7" oninput="updateCalInputDisplay('calinput7')" />
+                                  <input type="text" id="calinput8" name="calinput8" placeholder="Calculation Input 8" oninput="updateCalInputDisplay('calinput8')" /><br>
                                   <input type="text" id="calinput9" name="calinput9" placeholder="Calculation Input 9" />
                                   <input type="text" id="calinput10" name="calinput10" placeholder="Calculation Input 10" /><br> 
                                   <input type="text" id="calinput11" name="calinput11" placeholder="Calculation Input 11" />
@@ -500,6 +500,11 @@
                                   <!-- result -->
                                   <h1>Sum Result: <span id="sumResult"></span></h1> <!-- แสดงผลรวม -->
                                   <h1>Difference Result: <span id="differenceResult"></span></h1> <!-- แสดงผลต่าง -->
+                                  <h1>Calculation Input 5: <span id="displaycalinput5"></span></h1>
+                                  <h1>Calculation Input 6: <span id="displaycalinput6"></span></h1>
+                                  <h1>Calculation Input 7: <span id="displaycalinput7"></span></h1>
+                                  <h1>Calculation Input 8: <span id="displaycalinput8"></span></h1>
+
                                   <!-- / result -->
                                   <!-- ช่องใส่ลายเซ็นต์ -->
                                   <input type="hidden" id="signature2" name="signature2" placeholder="Signature 2" />

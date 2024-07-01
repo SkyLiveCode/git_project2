@@ -262,3 +262,20 @@ document.getElementById('signature2').addEventListener('input', function() {
 document.getElementById('signature3').addEventListener('input', function() {
   updateSignatureStatus('signature3', 'bg_signatureStatus3');
 });
+
+// Function to update the display for calculation inputs
+function updateCalInputDisplay(inputId) {
+  const inputValue = document.getElementById(inputId).value;
+  const displayElement = document.getElementById(`display${inputId}`);
+  if (displayElement) {
+      displayElement.textContent = inputValue;
+  }
+}
+
+// Add initial display elements for these inputs in the HTML
+document.addEventListener('DOMContentLoaded', function() {
+  updateCalInputDisplay('calinput5');
+  updateCalInputDisplay('calinput6');
+  updateCalInputDisplay('calinput7');
+  updateCalInputDisplay('calinput8');
+});

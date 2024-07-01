@@ -9,6 +9,7 @@ const db = require('./config/database');  // นำเข้าโมดูล�
 const fs = require('fs');                         // นำเข้าโมดูล filesystem สำหรับการจัดการไฟล์
 const cookieParser = require('cookie-parser'); // นำเข้าโมดูล cookie-parser สำหรับจัดการคุกกี้
 const session = require('express-session'); // นำเข้าโมดูล express-session สำหรับจัดการ session
+const MySQLStore = require('express-mysql-session')(session); // นำเข้า express-mysql-session
 const { checkAuthenticated } = require('./middleware/authMiddleware'); // นำเข้าโมดูล middleware
 const calculateController1 = require('./controllers/calculateController1'); // นำเข้าโมดูล calculateController1
 const calculateController2 = require('./controllers/calculateController2'); // นำเข้าโมดูล calculateController2
@@ -39,11 +40,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // กำหนด middleware สำหรับการ parse คุกกี้
 app.use(cookieParser());
+// ตั้งค่า session store
+const sessionStore = new MySQLStore({
+  clearExpired: true, // ล้าง session ที่หมดอายุโดยอัตโนมัติ
+  checkExpirationInterval: 900000, // ตรวจสอบทุกๆ 15 นาที (900000 มิลลิวินาที)
+  expiration: 86400000 // session หมดอายุใน 24 ชั่วโมง (86400000 มิลลิวินาที)
+}, db);
 // กำหนด middleware สำหรับการจัดการ session
 app.use(session({
   secret: 'your_secret_key',
   resave: false,
   saveUninitialized: false,
+  store: sessionStore,
   cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 } // กำหนดอายุคุกกี้เป็น 7 วัน
 }));
 

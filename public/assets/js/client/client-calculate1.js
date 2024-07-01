@@ -241,18 +241,40 @@ document.getElementById('calcForm').addEventListener('submit', function(event) {
     });
 });
 
-// ตรวจสอบลายเซ็นต์ 3 แบบเรียลไทม์
-document.getElementById('signature3').addEventListener('input', function() {
+// ฟังก์ชันสำหรับดึงข้อมูลผู้ใช้จากเซิร์ฟเวอร์
+async function fetchUsers() {
+  try {
+    const response = await fetch('/api/users'); // เรียก API เพื่อดึงข้อมูลผู้ใช้
+    const data = await response.json();
+
+    if (data.users) {
+      updateSignatureImage(data.users); // อัพเดทรูปภาพตามข้อมูลที่ได้รับ
+    }
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  }
+}
+
+// ฟังก์ชันสำหรับอัพเดทรูปภาพตามข้อมูลผู้ใช้
+function updateSignatureImage(users) {
   const signature3 = document.getElementById('signature3').value.toLowerCase();
   const signatureImage = document.getElementById('signatureImage');
-  if (signature3 === 'sky') {
-    signatureImage.src = '../../assets/img/signature/path_to_sky_image.jpg';
-    signatureImage.style.display = 'block';
-  } else if (signature3 === 'นายพงศ์สกาย รุ่งรพีพรพงษ์') {
-    signatureImage.src = '../../assets/img/signature/signature3.png';
+  const user = users.find(user => user.name.toLowerCase() === signature3);
+
+  if (user) {
+    signatureImage.src = `../../assets/img/signature/${user.picture_sign}`;
     signatureImage.style.display = 'block';
   } else {
     signatureImage.style.display = 'none';
   }
+}
+
+// เรียกฟังก์ชัน fetchUsers เมื่อโหลดหน้าเว็บ
+document.addEventListener('DOMContentLoaded', fetchUsers);
+
+// Event listener เพื่อตรวจสอบลายเซ็นต์ 3 แบบเรียลไทม์และอัพเดทรูปภาพ
+document.getElementById('signature3').addEventListener('input', function() {
+  fetchUsers(); // ดึงข้อมูลผู้ใช้ใหม่เมื่อมีการเปลี่ยนแปลงลายเซ็นต์ 3
   updateSignatureStatus('signature3', 'bg_signatureStatus3'); // อัพเดทสถานะของ signature3
 });
+
